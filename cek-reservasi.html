@@ -14,46 +14,57 @@ if(data){
 
 document.getElementById("hasil").innerHTML = `
 
-<div class="card">
+<div class="hasil-card">
 
-<h2>${data.booking}</h2>
+<h2>✅ Reservasi Ditemukan</h2>
 
-<p>
-<b>Nama</b><br>
-${data.nama}
-</p>
+<div class="info">
+<span>🔖 Nomor Booking</span>
+<h3>${data.booking}</h3>
+</div>
 
-<p>
-<b>Treatment</b><br>
-${data.treatment}
-</p>
+<div class="info">
+<span>👤 Nama</span>
+<p>${data.nama}</p>
+</div>
 
-<p>
-<b>Harga</b><br>
-${data.harga}
-</p>
+<div class="info">
+<span>💆 Treatment</span>
+<p>${data.treatment}</p>
+</div>
 
-<p>
-<b>Terapis</b><br>
-${data.terapis}
-</p>
+<div class="info">
+<span>💰 Harga</span>
+<p>${data.harga}</p>
+</div>
 
-<p>
-<b>Tanggal</b><br>
-${data.tanggal}
-</p>
+<div class="info">
+<span>👩 Terapis</span>
+<p>${data.terapis}</p>
+</div>
 
-<p>
-<b>Jam</b><br>
-${data.jam}
-</p>
+<div class="info">
+<span>📅 Tanggal</span>
+<p>${data.tanggal}</p>
+</div>
 
-<p>
-<b>Status</b><br>
-🟡 ${data.status}
-</p>
+<div class="info">
+<span>🕒 Jam</span>
+<p>${data.jam}</p>
+</div>
+
+<div class="info">
+<span>📌 Status</span>
+<p class="status">${data.status}</p>
+</div>
+
+<a href="index.html" class="btn-kembali">
+🏠 Kembali ke Beranda
+</a>
 
 </div>
+
+`;
 
 `;
 
