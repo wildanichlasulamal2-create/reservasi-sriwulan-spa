@@ -1,3 +1,10 @@
+<div id="hasil"></div>
+
+
+</div>
+
+
+
 <script>
 
 let data = JSON.parse(localStorage.getItem("reservasi"));
@@ -5,17 +12,13 @@ let data = JSON.parse(localStorage.getItem("reservasi"));
 
 if(data){
 
-
 document.getElementById("hasil").innerHTML = `
 
-
 <div class="card">
-
 
 <h2>
 ${data.booking}
 </h2>
-
 
 <p>
 <b>Nama</b>
@@ -23,13 +26,11 @@ ${data.booking}
 ${data.nama}
 </p>
 
-
 <p>
 <b>Treatment</b>
 <br>
 ${data.treatment}
 </p>
-
 
 <p>
 <b>Harga</b>
@@ -37,13 +38,11 @@ ${data.treatment}
 ${data.harga}
 </p>
 
-
 <p>
 <b>Status</b>
 <br>
 🟡 ${data.status}
 </p>
-
 
 <p>
 <b>Tanggal</b>
@@ -51,13 +50,11 @@ ${data.harga}
 ${data.tanggal}
 </p>
 
-
 <p>
 <b>Jam</b>
 <br>
 ${data.jam}
 </p>
-
 
 <p>
 <b>Terapis</b>
@@ -65,28 +62,20 @@ ${data.jam}
 ${data.terapis}
 </p>
 
-
 </div>
-
 
 `;
 
-
 }else{
 
-
 document.getElementById("hasil").innerHTML = `
-
 
 <p>
 ❌ Belum ada reservasi
 </p>
 
-
 `;
 
-
 }
-
 
 </script>
