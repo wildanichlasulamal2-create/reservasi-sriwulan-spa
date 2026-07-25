@@ -68,7 +68,7 @@ form.addEventListener("submit", function(e){
     );
 
 
-    wwindow.location.href="konfirmasi.html";
+    window.location.href="konfirmasi.html";
 
 
 });
