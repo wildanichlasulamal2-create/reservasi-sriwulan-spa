@@ -1,91 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Cek Reservasi | SIRES</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-</head>
-
-
-<body>
-
-
-<div class="form-container">
-
-
-<h1>
-Cek Status Reservasi
-</h1>
-
-
-<p>
-Masukkan nomor booking Anda
-</p>
-
-
-<input 
-type="text" 
-id="inputBooking"
-placeholder="Contoh: SPA483921">
-
-
-<button onclick="cekReservasi()">
-Cari
-</button>
-
-
-<div id="hasil"></div>
-
-
-</div>
-
-
-
 <script>
 
-
-function cekReservasi(){
-
-
-let input =
-document.getElementById("inputBooking").value;
+let data = JSON.parse(localStorage.getItem("reservasi"));
 
 
-
-let booking =
-localStorage.getItem("booking");
-
-
-
-if(input == booking){
-
-
-let nama =
-localStorage.getItem("nama");
-
-
-let treatment =
-localStorage.getItem("treatment");
-
-
-let tanggal =
-localStorage.getItem("tanggal");
-
-
-let jam =
-localStorage.getItem("jam");
-
-
-let terapis =
-localStorage.getItem("terapis");
-
+if(data){
 
 
 document.getElementById("hasil").innerHTML = `
@@ -95,49 +13,56 @@ document.getElementById("hasil").innerHTML = `
 
 
 <h2>
-${booking}
+${data.booking}
 </h2>
 
 
 <p>
 <b>Nama</b>
 <br>
-${nama}
+${data.nama}
 </p>
 
 
 <p>
 <b>Treatment</b>
 <br>
-${treatment}
+${data.treatment}
+</p>
+
+
+<p>
+<b>Harga</b>
+<br>
+${data.harga}
 </p>
 
 
 <p>
 <b>Status</b>
 <br>
-🟡 Menunggu Konfirmasi
+🟡 ${data.status}
 </p>
 
 
 <p>
 <b>Tanggal</b>
 <br>
-${tanggal}
+${data.tanggal}
 </p>
 
 
 <p>
 <b>Jam</b>
 <br>
-${jam}
+${data.jam}
 </p>
 
 
 <p>
 <b>Terapis</b>
 <br>
-${terapis}
+${data.terapis}
 </p>
 
 
@@ -147,7 +72,6 @@ ${terapis}
 `;
 
 
-
 }else{
 
 
@@ -155,7 +79,7 @@ document.getElementById("hasil").innerHTML = `
 
 
 <p>
-❌ Nomor booking tidak ditemukan
+❌ Belum ada reservasi
 </p>
 
 
@@ -165,13 +89,4 @@ document.getElementById("hasil").innerHTML = `
 }
 
 
-}
-
-
-
 </script>
-
-
-</body>
-
-</html>
