@@ -424,3 +424,56 @@ transition:.3s;
 background:#b4882b;
 
 }
+
+.hasil-card{
+    max-width:500px;
+    margin:30px auto;
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.hasil-card h2{
+    text-align:center;
+    color:#d63384;
+    margin-bottom:20px;
+}
+
+.info{
+    border-bottom:1px solid #eee;
+    padding:12px 0;
+}
+
+.info span{
+    display:block;
+    font-size:13px;
+    color:#888;
+}
+
+.info p,
+.info h3{
+    margin-top:5px;
+    color:#333;
+}
+
+.status{
+    color:#ff9800;
+    font-weight:bold;
+}
+
+.btn-kembali{
+    display:block;
+    margin-top:25px;
+    text-align:center;
+    background:#d63384;
+    color:#fff;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn-kembali:hover{
+    background:#b81f6b;
+}
