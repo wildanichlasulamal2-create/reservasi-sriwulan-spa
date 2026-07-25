@@ -315,3 +315,112 @@ color:#666;
 line-height:1.6;
 
 }
+
+/* ==========================
+BOOKING
+========================== */
+
+.booking{
+
+padding:80px 0;
+
+background:#f7f5f2;
+
+min-height:100vh;
+
+}
+
+.booking-box{
+
+width:700px;
+
+max-width:95%;
+
+margin:auto;
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 15px 30px rgba(0,0,0,.08);
+
+}
+
+.booking h1{
+
+text-align:center;
+
+color:#8b5e3c;
+
+margin-bottom:10px;
+
+}
+
+.booking p{
+
+text-align:center;
+
+margin-bottom:35px;
+
+color:#777;
+
+}
+
+.booking label{
+
+display:block;
+
+margin-top:20px;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+.booking input,
+.booking select{
+
+width:100%;
+
+padding:15px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+}
+
+.booking button{
+
+margin-top:30px;
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+background:#C89B3C;
+
+color:white;
+
+font-size:18px;
+
+border-radius:50px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.booking button:hover{
+
+background:#b4882b;
+
+}
