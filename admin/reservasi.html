@@ -40,21 +40,10 @@ Daftar reservasi pelanggan masuk
 <script>
 
 
-let booking = localStorage.getItem("booking");
-
-let nama = localStorage.getItem("nama");
-
-let treatment = localStorage.getItem("treatment");
-
-let tanggal = localStorage.getItem("tanggal");
-
-let jam = localStorage.getItem("jam");
-
-let terapis = localStorage.getItem("terapis");
+let data = JSON.parse(localStorage.getItem("reservasi"));
 
 
-
-if(booking){
+if(data){
 
 
 document.getElementById("dataBooking").innerHTML = `
@@ -64,49 +53,56 @@ document.getElementById("dataBooking").innerHTML = `
 
 
 <h2>
-${booking}
+${data.booking}
 </h2>
 
 
 <p>
 <b>Nama Pelanggan</b>
 <br>
-${nama}
+${data.nama}
 </p>
 
 
 <p>
 <b>Treatment</b>
 <br>
-${treatment}
+${data.treatment}
+</p>
+
+
+<p>
+<b>Harga</b>
+<br>
+${data.harga}
 </p>
 
 
 <p>
 <b>Tanggal</b>
 <br>
-${tanggal}
+${data.tanggal}
 </p>
 
 
 <p>
 <b>Jam</b>
 <br>
-${jam}
+${data.jam}
 </p>
 
 
 <p>
 <b>Terapis</b>
 <br>
-${terapis}
+${data.terapis}
 </p>
 
 
 <p>
 <b>Status</b>
 <br>
-🟡 Menunggu Konfirmasi
+🟡 ${data.status}
 </p>
 
 
@@ -126,14 +122,11 @@ Konfirmasi
 
 document.getElementById("dataBooking").innerHTML = `
 
-
 <p>
 Belum ada reservasi masuk
 </p>
 
-
 `;
-
 
 }
 
@@ -144,11 +137,3 @@ function konfirmasi(){
 alert("Reservasi berhasil dikonfirmasi");
 
 }
-
-
-</script>
-
-
-</body>
-
-</html>
