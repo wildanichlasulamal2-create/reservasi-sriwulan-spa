@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cek Reservasi | SIRES</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+<h1>
+Cek Status Reservasi
+</h1>
+
+
+<label>
+Nomor Booking
+</label>
+
+
+<input 
+type="text" 
+id="inputBooking"
+placeholder="Contoh: SPA483921">
+
+
+<button onclick="cekReservasi()">
+Cari
+</button>
+
+
+
+<hr>
+
+
+<div id="hasil">
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+function cekReservasi(){
+
+
+let nomor = document.getElementById("inputBooking").value;
+
+
+let booking = localStorage.getItem("booking");
+
+
+if(nomor == booking){
+
+
+document.getElementById("hasil").innerHTML=`
+
+<h2>${booking}</h2>
+
+<p>
+<b>Status</b>
+<br>
+🟡 MENUNGGU KONFIRMASI
+</p>
+
+
+<p>
+<b>Tanggal</b>
+<br>
+26 Juli 2026
+</p>
+
+
+<p>
+<b>Jam</b>
+<br>
+13.00 WIB
+</p>
+
+
+<p>
+<b>Terapis</b>
+<br>
+Dewi
+</p>
+
+`;
+
+
+
+}else{
+
+
+document.getElementById("hasil").innerHTML=
+
+`
+<p>
+❌ Nomor booking tidak ditemukan
+</p>
+`;
+
+}
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
