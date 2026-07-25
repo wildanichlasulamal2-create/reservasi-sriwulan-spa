@@ -1,102 +1,74 @@
-const treatment=document.getElementById("treatment");
-const harga=document.getElementById("harga");
-const form=document.getElementById("bookingForm");
+const treatment = document.getElementById("treatment");
+const harga = document.getElementById("harga");
+const form = document.getElementById("bookingForm");
 
-const daftarHarga={
-"Massage Relax":"Rp150.000",
-"Facial Treatment":"Rp120.000",
-"Body Scrub":"Rp175.000"
+
+const daftarHarga = {
+    "Massage Relax":"150000",
+    "Facial Treatment":"120000",
+    "Body Scrub":"175000"
 };
 
-treatment.addEventListener("change",()=>{
 
-harga.value=daftarHarga[treatment.value]||"";
+treatment.addEventListener("change", function(){
 
-});
-
-form.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-const booking="SPA"+Date.now().toString().slice(-6);
-
-localStorage.setItem("booking",booking);
-
-window.location.href="konfirmasi.html";
-
-});
-
-document.getElementById("treatment").addEventListener("change", function(){
-
-let harga = this.options[this.selectedIndex].dataset.harga;
-
-document.getElementById("harga").value =
-"Rp " + harga;
+    harga.value = "Rp " + daftarHarga[this.value];
 
 });
 
 
 
-document.getElementById("bookingForm")
-.addEventListener("submit", function(e){
+form.addEventListener("submit", function(e){
 
-e.preventDefault();
-
+    e.preventDefault();
 
 
-let nomorBooking =
-"SPA" + Math.floor(100000 + Math.random()*900000);
+    let nomorBooking =
+    "SPA" + Math.floor(100000 + Math.random()*900000);
 
 
 
-localStorage.setItem(
-"booking",
-nomorBooking
-);
+    let dataBooking = {
+
+        booking : nomorBooking,
+
+        nama :
+        document.getElementById("nama").value,
+
+        treatment :
+        document.getElementById("treatment").value,
+
+        harga :
+        document.getElementById("harga").value,
+
+        terapis :
+        document.getElementById("terapis").value,
+
+        tanggal :
+        document.getElementById("tanggal").value,
+
+        jam :
+        document.getElementById("jam").value,
+
+        status :
+        "Menunggu Konfirmasi"
+
+    };
 
 
-
-localStorage.setItem(
-"nama",
-document.getElementById("nama").value
-);
-
+    localStorage.setItem(
+        "reservasi",
+        JSON.stringify(dataBooking)
+    );
 
 
-localStorage.setItem(
-"treatment",
-document.getElementById("treatment").value
-);
-
-  localStorage.setItem(
-"terapis",
-document.getElementById("terapis").value
-);
+    alert(
+        "Reservasi berhasil dibuat\nNomor Booking: "
+        + nomorBooking
+    );
 
 
-
-localStorage.setItem(
-"tanggal",
-document.getElementById("tanggal").value
-);
-
-
-
-localStorage.setItem(
-"jam",
-document.getElementById("jam").value
-);
-
-
-
-alert(
-"Reservasi berhasil dibuat\nNomor Booking: "
-+ nomorBooking
-);
-
-
-
-window.location.href="cek-reservasi.html";
+    window.location.href="../cek-reservasi.html";
 
 
 });
