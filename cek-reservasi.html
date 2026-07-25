@@ -54,22 +54,63 @@ Cari
 function cekReservasi(){
 
 
-let nomor =
+let input =
 document.getElementById("inputBooking").value;
+
 
 
 let booking =
 localStorage.getItem("booking");
 
 
-if(nomor == booking){
+
+if(input == booking){
 
 
-document.getElementById("hasil").innerHTML=`
+let nama =
+localStorage.getItem("nama");
+
+
+let treatment =
+localStorage.getItem("treatment");
+
+
+let tanggal =
+localStorage.getItem("tanggal");
+
+
+let jam =
+localStorage.getItem("jam");
+
+
+let terapis =
+localStorage.getItem("terapis");
+
+
+
+document.getElementById("hasil").innerHTML = `
+
 
 <div class="card">
 
-<h2>${booking}</h2>
+
+<h2>
+${booking}
+</h2>
+
+
+<p>
+<b>Nama</b>
+<br>
+${nama}
+</p>
+
+
+<p>
+<b>Treatment</b>
+<br>
+${treatment}
+</p>
 
 
 <p>
@@ -82,44 +123,50 @@ document.getElementById("hasil").innerHTML=`
 <p>
 <b>Tanggal</b>
 <br>
-26 Juli 2026
+${tanggal}
 </p>
 
 
 <p>
 <b>Jam</b>
 <br>
-13.00 WIB
+${jam}
 </p>
 
 
 <p>
 <b>Terapis</b>
 <br>
-Dewi
+${terapis}
 </p>
 
 
 </div>
 
+
 `;
+
 
 
 }else{
 
 
-document.getElementById("hasil").innerHTML=`
+document.getElementById("hasil").innerHTML = `
+
 
 <p>
 ❌ Nomor booking tidak ditemukan
 </p>
 
+
 `;
 
+
 }
 
 
 }
+
 
 
 </script>
