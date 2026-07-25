@@ -225,3 +225,93 @@ nav ul{
 }
 
 }
+
+/* ==========================
+   WHY US
+========================== */
+
+.why{
+
+padding:90px 8%;
+
+background:#faf7f3;
+
+text-align:center;
+
+}
+
+.why h2{
+
+font-size:42px;
+
+color:#8b5e3c;
+
+margin-bottom:20px;
+
+}
+
+.why>p{
+
+margin-bottom:60px;
+
+color:#666;
+
+}
+
+.why-container{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+.why-card{
+
+background:white;
+
+width:260px;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.why-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.icon{
+
+font-size:55px;
+
+margin-bottom:20px;
+
+}
+
+.why-card h3{
+
+margin-bottom:15px;
+
+color:#8b5e3c;
+
+}
+
+.why-card p{
+
+color:#666;
+
+line-height:1.6;
+
+}
