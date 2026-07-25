@@ -30,22 +30,31 @@
 <label>Nama Lengkap</label>
 <input type="text" id="nama" required>
 
+
 <label>Nomor WhatsApp</label>
 <input type="tel" id="wa" required>
 
+
 <label>Pilih Treatment</label>
 
-<select id="treatment">
+<select id="treatment" required>
 
 <option value="">-- Pilih Treatment --</option>
 
-<option value="Massage Relax">Massage Relax</option>
+<option value="Massage Relax" data-harga="150000">
+Massage Relax
+</option>
 
-<option value="Facial Treatment">Facial Treatment</option>
+<option value="Facial Treatment" data-harga="200000">
+Facial Treatment
+</option>
 
-<option value="Body Scrub">Body Scrub</option>
+<option value="Body Scrub" data-harga="250000">
+Body Scrub
+</option>
 
 </select>
+
 
 <label>Harga</label>
 
@@ -54,34 +63,40 @@ type="text"
 id="harga"
 readonly>
 
+
 <label>Pilih Terapis</label>
 
-<select>
+<select id="terapis" required>
 
 <option>Terapis A</option>
-
 <option>Terapis B</option>
-
 <option>Terapis C</option>
 
 </select>
 
+
 <label>Tanggal</label>
 
-<input type="date" required>
+<input 
+type="date" 
+id="tanggal"
+required>
+
 
 <label>Jam</label>
 
-<input type="time" required>
+<input 
+type="time"
+id="jam"
+required>
+
 
 <button type="submit">
-
 Lanjutkan Reservasi
-
 </button>
 
-</form>
 
+</form>
 </div>
 
 </section>
