@@ -1,33 +1,27 @@
 const treatment=document.getElementById("treatment");
-
 const harga=document.getElementById("harga");
+const form=document.getElementById("bookingForm");
+
+const daftarHarga={
+"Massage Relax":"Rp150.000",
+"Facial Treatment":"Rp120.000",
+"Body Scrub":"Rp175.000"
+};
 
 treatment.addEventListener("change",()=>{
 
-switch(treatment.value){
+harga.value=daftarHarga[treatment.value]||"";
 
-case "Massage Relax":
+});
 
-harga.value="Rp150.000";
+form.addEventListener("submit",(e)=>{
 
-break;
+e.preventDefault();
 
-case "Facial Treatment":
+const booking="SPA"+Date.now().toString().slice(-6);
 
-harga.value="Rp120.000";
+localStorage.setItem("booking",booking);
 
-break;
-
-case "Body Scrub":
-
-harga.value="Rp175.000";
-
-break;
-
-default:
-
-harga.value="";
-
-}
+window.location.href="konfirmasi.html";
 
 });
