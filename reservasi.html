@@ -15,75 +15,149 @@
 
 </head>
 
+
 <body>
+
 
 <section class="booking">
 
+
 <div class="booking-box">
 
-<h1>Reservasi Online</h1>
 
-<p>Silakan isi data reservasi Anda.</p>
+<h1>
+Reservasi Online
+</h1>
+
+
+<p>
+Silakan isi data reservasi Anda.
+</p>
+
+
 
 <form id="bookingForm">
 
-<label>Nama Lengkap</label>
-<input type="text" id="nama" required>
 
 
-<label>Nomor WhatsApp</label>
-<input type="tel" id="wa" required>
+<label>
+Nama Lengkap
+</label>
+
+<input 
+type="text" 
+id="nama"
+placeholder="Masukkan nama lengkap"
+required>
 
 
-<label>Pilih Treatment</label>
+
+<label>
+Nomor WhatsApp
+</label>
+
+<input 
+type="tel" 
+id="wa"
+placeholder="08xxxxxxxxxx"
+required>
+
+
+
+<label>
+Pilih Treatment
+</label>
+
 
 <select id="treatment" required>
 
-<option value="">-- Pilih Treatment --</option>
+
+<option value="">
+-- Pilih Treatment --
+</option>
+
 
 <option value="Massage Relax" data-harga="150000">
 Massage Relax
 </option>
 
+
 <option value="Facial Treatment" data-harga="200000">
 Facial Treatment
 </option>
+
 
 <option value="Body Scrub" data-harga="250000">
 Body Scrub
 </option>
 
+
 </select>
 
 
-<label>Harga</label>
+
+<label>
+Harga
+</label>
+
 
 <input
 type="text"
 id="harga"
+placeholder="Harga otomatis"
 readonly>
 
 
-<label>Pilih Terapis</label>
+
+<label>
+Pilih Terapis
+</label>
+
 
 <select id="terapis" required>
 
-<option>Terapis A</option>
-<option>Terapis B</option>
-<option>Terapis C</option>
+
+<option value="">
+-- Pilih Terapis --
+</option>
+
+
+<option value="Dewi">
+Dewi
+</option>
+
+
+<option value="Sinta">
+Sinta
+</option>
+
+
+<option value="Ayu">
+Ayu
+</option>
+
 
 </select>
 
 
-<label>Tanggal</label>
+
+<label>
+Tanggal Reservasi
+</label>
+
 
 <input 
-type="date" 
+type="date"
 id="tanggal"
 required>
 
 
-<label>Jam</label>
+
+
+<label>
+Jam Reservasi
+</label>
+
 
 <input 
 type="time"
@@ -91,20 +165,30 @@ id="jam"
 required>
 
 
+
+
 <button type="submit">
+
 Lanjutkan Reservasi
+
 </button>
 
 
+
 </form>
+
+
 </div>
+
 
 </section>
 
-</body>
 
-</html>
 
 <script src="js/booking.js"></script>
 
+
 </body>
+
+
+</html>
