@@ -25,27 +25,34 @@
 
 <p>Silakan isi data reservasi Anda.</p>
 
-<form>
+<form id="bookingForm">
 
 <label>Nama Lengkap</label>
-
-<input type="text" placeholder="Masukkan nama">
+<input type="text" id="nama" required>
 
 <label>Nomor WhatsApp</label>
-
-<input type="tel" placeholder="08xxxxxxxxxx">
+<input type="tel" id="wa" required>
 
 <label>Pilih Treatment</label>
 
-<select>
+<select id="treatment">
 
-<option>Massage Relax</option>
+<option value="">-- Pilih Treatment --</option>
 
-<option>Facial Treatment</option>
+<option value="Massage Relax">Massage Relax</option>
 
-<option>Body Scrub</option>
+<option value="Facial Treatment">Facial Treatment</option>
+
+<option value="Body Scrub">Body Scrub</option>
 
 </select>
+
+<label>Harga</label>
+
+<input
+type="text"
+id="harga"
+readonly>
 
 <label>Pilih Terapis</label>
 
@@ -59,15 +66,15 @@
 
 </select>
 
-<label>Tanggal Reservasi</label>
+<label>Tanggal</label>
 
-<input type="date">
+<input type="date" required>
 
-<label>Jam Reservasi</label>
+<label>Jam</label>
 
-<input type="time">
+<input type="time" required>
 
-<button>
+<button type="submit">
 
 Lanjutkan Reservasi
 
