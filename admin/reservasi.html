@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reservasi Admin | SIRES Sriwulan Spa</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="form-container">
+
+
+<h1>
+Data Reservasi
+</h1>
+
+
+<p>
+Daftar reservasi pelanggan masuk
+</p>
+
+
+<div id="dataBooking"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+let booking = localStorage.getItem("booking");
+
+let nama = localStorage.getItem("nama");
+
+let treatment = localStorage.getItem("treatment");
+
+let tanggal = localStorage.getItem("tanggal");
+
+let jam = localStorage.getItem("jam");
+
+let terapis = localStorage.getItem("terapis");
+
+
+
+if(booking){
+
+
+document.getElementById("dataBooking").innerHTML = `
+
+
+<div class="card">
+
+
+<h2>
+${booking}
+</h2>
+
+
+<p>
+<b>Nama Pelanggan</b>
+<br>
+${nama}
+</p>
+
+
+<p>
+<b>Treatment</b>
+<br>
+${treatment}
+</p>
+
+
+<p>
+<b>Tanggal</b>
+<br>
+${tanggal}
+</p>
+
+
+<p>
+<b>Jam</b>
+<br>
+${jam}
+</p>
+
+
+<p>
+<b>Terapis</b>
+<br>
+${terapis}
+</p>
+
+
+<p>
+<b>Status</b>
+<br>
+🟡 Menunggu Konfirmasi
+</p>
+
+
+<button onclick="konfirmasi()">
+Konfirmasi
+</button>
+
+
+</div>
+
+
+`;
+
+
+}else{
+
+
+document.getElementById("dataBooking").innerHTML = `
+
+
+<p>
+Belum ada reservasi masuk
+</p>
+
+
+`;
+
+
+}
+
+
+
+function konfirmasi(){
+
+alert("Reservasi berhasil dikonfirmasi");
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
