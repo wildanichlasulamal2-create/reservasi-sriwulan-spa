@@ -1,4 +1,116 @@
-body{
+/* ==========================
+   SIRES - Sriwulan Spa
+========================== */
+
+*{
     margin:0;
-    font-family:Arial,sans-serif;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8f5f2;
+    color:#333;
+}
+
+/* Navbar */
+
+header{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:999;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 8%;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:white;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+nav ul li{
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+nav ul li:hover{
+    color:#F4D03F;
+}
+
+/* Hero */
+
+.hero{
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("../assets/banner.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+}
+
+.hero h1{
+
+    font-size:64px;
+    color:white;
+    margin-bottom:20px;
+
+}
+
+.hero p{
+
+    color:white;
+    font-size:22px;
+    margin-bottom:35px;
+
+}
+
+.hero button{
+
+    padding:16px 40px;
+
+    background:#C8A165;
+
+    color:white;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.hero button:hover{
+
+    background:#a67c3d;
+
+    transform:translateY(-3px);
+
 }
