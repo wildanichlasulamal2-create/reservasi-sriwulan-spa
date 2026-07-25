@@ -68,7 +68,7 @@ form.addEventListener("submit", function(e){
     );
 
 
-    window.location.href="cek-reservasi.html";
+    wwindow.location.href="konfirmasi.html";
 
 
 });
