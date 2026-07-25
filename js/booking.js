@@ -68,7 +68,7 @@ form.addEventListener("submit", function(e){
     );
 
 
-    window.location.href="konfirmasi.html";
+    window.location.href="/reservasi-sriwulan-spa/cek-reservasi.html";
 
 
 });
