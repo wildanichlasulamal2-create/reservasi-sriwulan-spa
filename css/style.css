@@ -1,116 +1,142 @@
-/* ==========================
-   SIRES - Sriwulan Spa
-========================== */
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-    font-family:'Poppins',sans-serif;
-    background:#f8f5f2;
-    color:#333;
+background:#faf7f3;
 }
 
-/* Navbar */
+/* HEADER */
 
 header{
-    width:100%;
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:999;
+
+height:100vh;
+
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url("../assets/banner.jpg");
+
+background-size:cover;
+
+background-position:center;
+
 }
 
+/* NAVBAR */
+
 nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:25px 8%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:25px 8%;
+
 }
 
 .logo{
-    font-size:28px;
-    font-weight:700;
-    color:white;
+
+font-size:30px;
+
+font-weight:bold;
+
+color:white;
+
 }
 
 nav ul{
-    display:flex;
-    list-style:none;
-    gap:35px;
+
+display:flex;
+
+list-style:none;
+
+gap:30px;
+
 }
 
-nav ul li{
-    color:white;
-    cursor:pointer;
-    transition:.3s;
+nav ul li a{
+
+text-decoration:none;
+
+color:white;
+
+font-weight:500;
+
+transition:.3s;
+
 }
 
-nav ul li:hover{
-    color:#F4D03F;
+nav ul li a:hover{
+
+color:#f5d27a;
+
 }
 
-/* Hero */
+/* HERO */
 
 .hero{
-    height:100vh;
-    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url("../assets/banner.jpg");
 
-    background-size:cover;
-    background-position:center;
+height:85vh;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+display:flex;
 
-    text-align:center;
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+color:white;
+
 }
 
 .hero h1{
 
-    font-size:64px;
-    color:white;
-    margin-bottom:20px;
+font-size:70px;
+
+margin-bottom:20px;
 
 }
 
 .hero p{
 
-    color:white;
-    font-size:22px;
-    margin-bottom:35px;
+font-size:22px;
+
+margin-bottom:35px;
 
 }
 
 .hero button{
 
-    padding:16px 40px;
+padding:18px 40px;
 
-    background:#C8A165;
+background:#C89B3C;
 
-    color:white;
+border:none;
 
-    border:none;
+border-radius:50px;
 
-    border-radius:50px;
+color:white;
 
-    cursor:pointer;
+font-size:18px;
 
-    font-size:18px;
+cursor:pointer;
 
-    transition:.3s;
+transition:.3s;
 
 }
 
 .hero button:hover{
 
-    background:#a67c3d;
+background:#a77d28;
 
-    transform:translateY(-3px);
+transform:translateY(-3px);
 
 }
