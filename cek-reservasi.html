@@ -16,50 +16,41 @@ document.getElementById("hasil").innerHTML = `
 
 <div class="card">
 
-<h2>
-${data.booking}
-</h2>
+<h2>${data.booking}</h2>
 
 <p>
-<b>Nama</b>
-<br>
+<b>Nama</b><br>
 ${data.nama}
 </p>
 
 <p>
-<b>Treatment</b>
-<br>
+<b>Treatment</b><br>
 ${data.treatment}
 </p>
 
 <p>
-<b>Harga</b>
-<br>
+<b>Harga</b><br>
 ${data.harga}
 </p>
 
 <p>
-<b>Status</b>
-<br>
-🟡 ${data.status}
+<b>Terapis</b><br>
+${data.terapis}
 </p>
 
 <p>
-<b>Tanggal</b>
-<br>
+<b>Tanggal</b><br>
 ${data.tanggal}
 </p>
 
 <p>
-<b>Jam</b>
-<br>
+<b>Jam</b><br>
 ${data.jam}
 </p>
 
 <p>
-<b>Terapis</b>
-<br>
-${data.terapis}
+<b>Status</b><br>
+🟡 ${data.status}
 </p>
 
 </div>
@@ -69,11 +60,7 @@ ${data.terapis}
 }else{
 
 document.getElementById("hasil").innerHTML = `
-
-<p>
-❌ Belum ada reservasi
-</p>
-
+<p>❌ Belum ada reservasi</p>
 `;
 
 }
