@@ -68,6 +68,11 @@ localStorage.setItem(
 document.getElementById("treatment").value
 );
 
+  localStorage.setItem(
+"terapis",
+document.getElementById("terapis").value
+);
+
 
 
 localStorage.setItem(
