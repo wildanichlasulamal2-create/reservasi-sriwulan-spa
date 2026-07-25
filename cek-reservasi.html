@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cek Reservasi | SIRES</title>
@@ -16,16 +17,17 @@
 <body>
 
 
-<div class="container">
+<div class="form-container">
+
 
 <h1>
 Cek Status Reservasi
 </h1>
 
 
-<label>
-Nomor Booking
-</label>
+<p>
+Masukkan nomor booking Anda
+</p>
 
 
 <input 
@@ -39,13 +41,7 @@ Cari
 </button>
 
 
-
-<hr>
-
-
-<div id="hasil">
-
-</div>
+<div id="hasil"></div>
 
 
 </div>
@@ -54,13 +50,16 @@ Cari
 
 <script>
 
+
 function cekReservasi(){
 
 
-let nomor = document.getElementById("inputBooking").value;
+let nomor =
+document.getElementById("inputBooking").value;
 
 
-let booking = localStorage.getItem("booking");
+let booking =
+localStorage.getItem("booking");
 
 
 if(nomor == booking){
@@ -68,12 +67,15 @@ if(nomor == booking){
 
 document.getElementById("hasil").innerHTML=`
 
+<div class="card">
+
 <h2>${booking}</h2>
+
 
 <p>
 <b>Status</b>
 <br>
-🟡 MENUNGGU KONFIRMASI
+🟡 Menunggu Konfirmasi
 </p>
 
 
@@ -97,19 +99,21 @@ document.getElementById("hasil").innerHTML=`
 Dewi
 </p>
 
-`;
 
+</div>
+
+`;
 
 
 }else{
 
 
-document.getElementById("hasil").innerHTML=
+document.getElementById("hasil").innerHTML=`
 
-`
 <p>
 ❌ Nomor booking tidak ditemukan
 </p>
+
 `;
 
 }
