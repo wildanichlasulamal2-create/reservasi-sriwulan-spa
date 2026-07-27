@@ -477,3 +477,77 @@ background:#b4882b;
 .btn-kembali:hover{
     background:#b81f6b;
 }
+
+/* ==========================
+   ADMIN RESERVASI
+========================== */
+
+.table-admin{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.table-admin th{
+    background:#8b5e3c;
+    color:#fff;
+    padding:15px;
+    font-size:15px;
+}
+
+.table-admin td{
+    padding:14px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+    font-size:14px;
+}
+
+.table-admin tr:hover{
+    background:#faf7f3;
+}
+
+.table-admin button{
+    padding:8px 14px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:#fff;
+    margin:2px;
+    transition:.3s;
+}
+
+.table-admin button:first-child{
+    background:#28a745;
+}
+
+.table-admin button:last-child{
+    background:#dc3545;
+}
+
+.table-admin button:hover{
+    opacity:.85;
+}
+
+.form-container{
+    width:95%;
+    max-width:1200px;
+    margin:40px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.form-container h1{
+    color:#8b5e3c;
+    margin-bottom:10px;
+}
+
+.form-container p{
+    color:#666;
+    margin-bottom:20px;
+}
