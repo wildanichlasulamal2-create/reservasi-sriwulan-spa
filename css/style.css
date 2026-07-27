@@ -694,3 +694,27 @@ background:#b4882b;
     border:1px solid #8b5e3c;
 
 }
+
+/* ==========================
+   FILTER ADMIN
+========================== */
+
+.filter-box{
+    margin-bottom:25px;
+}
+
+.filter-box select{
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
