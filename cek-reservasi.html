@@ -1,21 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cek Reservasi | SIRES Sriwulan Spa</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<section class="booking">
+
+<div class="booking-box">
+
+<h1>🌸 Cek Status Reservasi</h1>
+
+<p>Informasi reservasi pelanggan</p>
+
+<div id="hasil"></div>
+
+</div>
+
+</section>
+
 <script>
 
 let data = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-// Jika data lama masih object, ubah menjadi array
 if (!Array.isArray(data)) {
     data = [data];
 }
 
-// Ambil reservasi terakhir
 let reservasi = data[data.length - 1];
 
-    console.log("DATA:", data);
-console.log("RESERVASI:", reservasi);
-
-    alert(JSON.stringify(reservasi));
-
-if(reservasi){
+if (reservasi) {
 
 document.getElementById("hasil").innerHTML = `
 
@@ -71,7 +94,7 @@ document.getElementById("hasil").innerHTML = `
 
 `;
 
-}else{
+} else {
 
 document.getElementById("hasil").innerHTML = `
 
@@ -94,3 +117,7 @@ Silakan lakukan reservasi terlebih dahulu.
 }
 
 </script>
+
+</body>
+
+</html>
