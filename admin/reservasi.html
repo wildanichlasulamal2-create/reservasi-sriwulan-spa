@@ -224,6 +224,34 @@ simpan();
 
 </script>
 
+    function detailReservasi(index){
+
+let data = reservasi[index];
+
+
+alert(
+"📋 DETAIL RESERVASI\n\n" +
+
+"🔖 Booking : " + data.booking + "\n" +
+
+"👤 Nama : " + data.nama + "\n" +
+
+"📱 WhatsApp : " + data.wa + "\n" +
+
+"💆 Treatment : " + data.treatment + "\n" +
+
+"👩 Terapis : " + data.terapis + "\n" +
+
+"📅 Tanggal : " + data.tanggal + "\n" +
+
+"🕒 Jam : " + data.jam + "\n" +
+
+"📌 Status : " + data.status
+
+);
+
+}
+
     function tampilkanData(data){
 
 let html = `
