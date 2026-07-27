@@ -321,3 +321,27 @@ tampilkanData(hasil);
 </body>
 
 </html>
+
+function filterStatus(){
+
+let status = document
+.getElementById("filterStatus")
+.value;
+
+if(status==""){
+
+tampilkanData(reservasi);
+
+return;
+
+}
+
+let hasil = reservasi.filter(item=>
+
+item.status.includes(status)
+
+);
+
+tampilkanData(hasil);
+
+}
