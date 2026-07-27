@@ -718,3 +718,31 @@ background:#b4882b;
     cursor:pointer;
 
 }
+
+.table-admin button {
+
+    color: white;
+
+    background: #d88b9a;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 13px;
+
+}
+
+
+
+.table-admin button:hover {
+
+    opacity: 0.8;
+
+}
