@@ -1,36 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Reservasi | SIRES Sriwulan Spa</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="form-container">
+
+<h1>📋 Dashboard Reservasi</h1>
+
+<p>Kelola seluruh reservasi pelanggan Sriwulan Spa</p>
+
+<div class="dashboard-admin">
+
+<div class="stat-card">
+<h3>Total Reservasi</h3>
+<h2 id="totalReservasi">0</h2>
+</div>
+
+<div class="stat-card">
+<h3>🟡 Menunggu</h3>
+<h2 id="menunggu">0</h2>
+</div>
+
+<div class="stat-card">
+<h3>🟢 Dikonfirmasi</h3>
+<h2 id="dikonfirmasi">0</h2>
+</div>
+
+<div class="stat-card">
+<h3>✅ Selesai</h3>
+<h2 id="selesai">0</h2>
+</div>
+
+</div>
+
+<div id="dataBooking"></div>
+
+<script>
+
 let reservasi = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-// Dashboard Statistik
-let total = reservasi.length;
+if(!Array.isArray(reservasi)){
+    reservasi=[reservasi];
+}
 
-let menunggu = reservasi.filter(r => r.status.includes("Menunggu")).length;
+//========================
+// DASHBOARD
+//========================
 
-let dikonfirmasi = reservasi.filter(r => r.status.includes("Dikonfirmasi")).length;
+document.getElementById("totalReservasi").innerHTML=reservasi.length;
 
-let selesaiJumlah = reservasi.filter(r => r.status.includes("Selesai")).length;
+document.getElementById("menunggu").innerHTML=
+reservasi.filter(r=>r.status.includes("Menunggu")).length;
 
-document.getElementById("totalReservasi").textContent = total;
-document.getElementById("menunggu").textContent = menunggu;
-document.getElementById("dikonfirmasi").textContent = dikonfirmasi;
-document.getElementById("selesai").textContent = selesaiJumlah;
+document.getElementById("dikonfirmasi").innerHTML=
+reservasi.filter(r=>r.status.includes("Dikonfirmasi")).length;
 
-let html = `
+document.getElementById("selesai").innerHTML=
+reservasi.filter(r=>r.status.includes("Selesai")).length;
+
+
+//========================
+// TABEL
+//========================
+
+let html=`
+
 <table class="table-admin">
 
 <tr>
+
 <th>No</th>
-<th>Booking</th>
+
+<th>No Booking</th>
+
 <th>Nama</th>
+
 <th>Treatment</th>
+
 <th>Tanggal</th>
+
+<th>Jam</th>
+
+<th>Terapis</th>
+
 <th>Status</th>
+
 <th>Aksi</th>
+
 </tr>
+
 `;
 
 reservasi.forEach((data,index)=>{
 
-html += `
+html+=`
 
 <tr>
 
@@ -44,6 +120,10 @@ html += `
 
 <td>${data.tanggal}</td>
 
+<td>${data.jam}</td>
+
+<td>${data.terapis}</td>
+
 <td>${data.status}</td>
 
 <td>
@@ -56,7 +136,7 @@ Konfirmasi
 Selesai
 </button>
 
-<button onclick="hapus(${index})">
+<button onclick="hapusReservasi(${index})">
 Hapus
 </button>
 
@@ -68,9 +148,14 @@ Hapus
 
 });
 
-html += "</table>";
+html+="</table>";
 
-document.getElementById("dataBooking").innerHTML = html;
+document.getElementById("dataBooking").innerHTML=html;
+
+
+//========================
+// FUNCTION
+//========================
 
 function simpan(){
 
@@ -99,9 +184,9 @@ simpan();
 
 }
 
-function hapus(index){
+function hapusReservasi(index){
 
-if(confirm("Hapus reservasi?")){
+if(confirm("Yakin ingin menghapus reservasi?")){
 
 reservasi.splice(index,1);
 
@@ -110,3 +195,11 @@ simpan();
 }
 
 }
+
+</script>
+
+</div>
+
+</body>
+
+</html>
