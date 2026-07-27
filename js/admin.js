@@ -42,7 +42,7 @@ form.addEventListener("submit", async function(e){
 
         alert("✅ Login berhasil");
 
-        window.location.href = "dashboard.html";
+        window.location.href = "reservasi.html";
 
     }catch(error){
 
