@@ -18,12 +18,79 @@
 <body>
 
 
-<div class="form-container">
+<div class="admin-layout">
 
 
-<h1>📋 Dashboard Reservasi</h1>
+<!-- SIDEBAR -->
 
-<p>Kelola seluruh reservasi pelanggan Sriwulan Spa</p>
+<aside class="sidebar">
+
+<h2>🌸 SIRES</h2>
+
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+🏠 Dashboard
+</a>
+</li>
+
+
+<li class="active">
+<a href="reservasi.html">
+📋 Reservasi
+</a>
+</li>
+
+
+<li>
+<a href="pelanggan.html">
+👥 Pelanggan
+</a>
+</li>
+
+
+<li>
+<a href="laporan.html">
+📊 Laporan
+</a>
+</li>
+
+
+<li>
+<a href="pengaturan.html">
+⚙️ Pengaturan
+</a>
+</li>
+
+
+<li>
+<a href="login.html">
+🚪 Logout
+</a>
+</li>
+
+
+</ul>
+
+</aside>
+
+
+
+
+
+<!-- CONTENT -->
+
+<main class="content">
+
+
+<h1>📋 Data Reservasi</h1>
+
+<p>
+Kelola seluruh reservasi pelanggan Sriwulan Spa
+</p>
+
 
 
 
@@ -32,15 +99,28 @@
 
 <select id="filterStatus" onchange="filterStatus()">
 
-<option value="">Semua Status</option>
+<option value="">
+Semua Status
+</option>
 
-<option value="Menunggu">🟡 Menunggu</option>
 
-<option value="Dikonfirmasi">🟢 Dikonfirmasi</option>
+<option value="Menunggu">
+🟡 Menunggu
+</option>
 
-<option value="Selesai">✅ Selesai</option>
+
+<option value="Dikonfirmasi">
+🟢 Dikonfirmasi
+</option>
+
+
+<option value="Selesai">
+✅ Selesai
+</option>
+
 
 </select>
+
 
 
 
@@ -56,45 +136,90 @@ onkeyup="cariReservasi()">
 
 
 
+
 <div class="dashboard-admin">
 
 
+
 <div class="stat-card">
+
 <h3>Total Reservasi</h3>
-<h2 id="totalReservasi">0</h2>
+
+<h2 id="totalReservasi">
+0
+</h2>
+
 </div>
 
 
+
+
 <div class="stat-card">
+
 <h3>🟡 Menunggu</h3>
-<h2 id="menunggu">0</h2>
+
+<h2 id="menunggu">
+0
+</h2>
+
 </div>
 
 
+
+
+
 <div class="stat-card">
+
 <h3>🟢 Dikonfirmasi</h3>
-<h2 id="dikonfirmasi">0</h2>
+
+<h2 id="dikonfirmasi">
+0
+</h2>
+
 </div>
+
+
+
 
 
 <div class="stat-card">
+
 <h3>✅ Selesai</h3>
-<h2 id="selesai">0</h2>
+
+<h2 id="selesai">
+0
+</h2>
+
 </div>
 
 
+
 </div>
 
 
 
 
-<div id="dataBooking"></div>
+
+
+<div id="dataBooking">
+
+Memuat data reservasi...
+
+</div>
+
+
+
+</main>
+
+
+
+</div>
+
+
+
 
 
 <script type="module" src="../js/admin.js"></script>
-
-
-</div>
 
 
 </body>
