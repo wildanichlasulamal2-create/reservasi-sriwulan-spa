@@ -2,7 +2,7 @@
 // IMPORT FIREBASE
 // ========================
 
-import { auth } from "../../js/firebase.js";
+import { auth } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword
