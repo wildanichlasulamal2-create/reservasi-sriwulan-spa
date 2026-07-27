@@ -2,122 +2,390 @@
 <html lang="id">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>Cek Reservasi | SIRES Sriwulan Spa</title>
 
+
 <link rel="stylesheet" href="css/style.css">
+
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 
 </head>
 
+
+
 <body>
+
+
 
 <section class="booking">
 
+
+
 <div class="booking-box">
 
-<h1>🌸 Cek Status Reservasi</h1>
 
-<p>Informasi reservasi pelanggan</p>
+
+<h1>
+🌸 Cek Status Reservasi
+</h1>
+
+
+
+<p>
+Informasi reservasi pelanggan
+</p>
+
+
+
+
 
 <div id="hasil"></div>
 
+
+
+
+
 </div>
+
+
 
 </section>
 
+
+
+
+
+
+
 <script>
 
-let data = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-if (!Array.isArray(data)) {
-    data = [data];
+
+
+let data = JSON.parse(
+
+localStorage.getItem("reservasi")
+
+) || [];
+
+
+
+
+
+if(!Array.isArray(data)){
+
+
+data = [data];
+
+
 }
+
+
+
+
 
 let reservasi = data[data.length - 1];
 
-if (reservasi) {
+
+
+
+
+
+
+if(reservasi){
+
+
+
+
 
 document.getElementById("hasil").innerHTML = `
 
+
+
+
 <div class="hasil-card">
 
-<h2>✅ Reservasi Berhasil</h2>
+
+
+
+
+<h2>
+✅ Reservasi Berhasil
+</h2>
+
+
+
+
+
+
 
 <div class="info">
-<span>🔖 Nomor Booking</span>
-<h3>${reservasi.booking}</h3>
+
+<span>
+🔖 Nomor Booking
+</span>
+
+<h3>
+${reservasi.booking}
+</h3>
+
 </div>
 
-<div class="info">
-<span>👤 Nama Pelanggan</span>
-<p>${reservasi.nama}</p>
-</div>
+
+
+
+
+
 
 <div class="info">
-<span>💆 Treatment</span>
-<p>${reservasi.treatment}</p>
+
+<span>
+👤 Nama Pelanggan
+</span>
+
+<p>
+${reservasi.nama}
+</p>
+
 </div>
 
-<div class="info">
-<span>💰 Harga</span>
-<p>${reservasi.harga}</p>
-</div>
+
+
+
+
+
 
 <div class="info">
-<span>👩 Terapis</span>
-<p>${reservasi.terapis}</p>
+
+<span>
+📱 WhatsApp
+</span>
+
+<p>
+${reservasi.wa}
+</p>
+
 </div>
 
-<div class="info">
-<span>📅 Tanggal Reservasi</span>
-<p>${reservasi.tanggal}</p>
-</div>
+
+
+
+
+
 
 <div class="info">
-<span>🕒 Jam Reservasi</span>
-<p>${reservasi.jam}</p>
+
+<span>
+💆 Treatment
+</span>
+
+<p>
+${reservasi.treatment}
+</p>
+
 </div>
 
+
+
+
+
+
+
 <div class="info">
-<span>📌 Status</span>
-<p class="status">${reservasi.status}</p>
+
+<span>
+💰 Harga
+</span>
+
+<p>
+${reservasi.harga}
+</p>
+
 </div>
+
+
+
+
+
+
+
+<div class="info">
+
+<span>
+👩 Terapis
+</span>
+
+<p>
+${reservasi.terapis}
+</p>
+
+</div>
+
+
+
+
+
+
+
+<div class="info">
+
+<span>
+📅 Tanggal Reservasi
+</span>
+
+<p>
+${reservasi.tanggal}
+</p>
+
+</div>
+
+
+
+
+
+
+
+<div class="info">
+
+<span>
+🕒 Jam Reservasi
+</span>
+
+<p>
+${reservasi.jam}
+</p>
+
+</div>
+
+
+
+
+
+
+
+<div class="info">
+
+<span>
+📌 Status
+</span>
+
+<p class="status">
+${reservasi.status}
+</p>
+
+</div>
+
+
+
+
+
+
+
 
 <a href="index.html" class="btn-kembali">
+
 🏠 Kembali ke Beranda
+
 </a>
+
+
+
+
 
 </div>
 
+
+
+
+
 `;
+
+
+
+
 
 } else {
 
+
+
+
+
 document.getElementById("hasil").innerHTML = `
+
+
+
+
 
 <div class="hasil-card">
 
-<h2>❌ Data Reservasi Tidak Ditemukan</h2>
+
+
+
+
+<h2>
+❌ Data Reservasi Tidak Ditemukan
+</h2>
+
+
+
+
 
 <p style="text-align:center;margin-top:20px;">
+
 Silakan lakukan reservasi terlebih dahulu.
+
 </p>
 
+
+
+
+
+
 <a href="reservasi.html" class="btn-kembali">
+
 📝 Buat Reservasi
+
 </a>
+
+
+
+
+
 
 </div>
 
+
+
+
+
+
 `;
+
+
+
+
 
 }
 
+
+
+
+
 </script>
 
+
+
+
+
 </body>
+
 
 </html>
