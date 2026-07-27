@@ -9,19 +9,28 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 
+
 // ========================
-// LOGIN
+// ELEMENT
 // ========================
 
 const form = document.getElementById("loginForm");
 const pesan = document.getElementById("pesan");
 
-form.addEventListener("submit", async (e)=>{
+
+
+// ========================
+// LOGIN
+// ========================
+
+form.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+
+    pesan.innerHTML = "";
 
     try{
 
@@ -33,13 +42,26 @@ form.addEventListener("submit", async (e)=>{
 
         alert("✅ Login berhasil");
 
-        window.location.href="dashboard.html";
+        window.location.href = "dashboard.html";
 
     }catch(error){
 
-        console.log(error);
+        console.error(error);
 
-        pesan.innerHTML="❌ Email atau Password salah.";
+        switch(error.code){
+
+            case "auth/invalid-credential":
+                pesan.innerHTML = "❌ Email atau Password salah.";
+                break;
+
+            case "auth/invalid-email":
+                pesan.innerHTML = "❌ Format email tidak valid.";
+                break;
+
+            default:
+                pesan.innerHTML = "❌ Login gagal.";
+                break;
+        }
 
     }
 
