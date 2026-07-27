@@ -14,31 +14,50 @@ import {
 
 
 // ========================
-// AMBIL NOMOR BOOKING
+// AMBIL NOMOR BOOKING DARI URL
 // ========================
 
-let nomorBooking = prompt("Masukkan Nomor Booking Anda");
+const urlParams = new URLSearchParams(window.location.search);
+
+const nomorBooking = urlParams.get("booking");
+
 
 
 
 // ========================
-// CEK RESERVASI
+// CEK DATA
 // ========================
 
 async function cekReservasi(){
 
 
-    if(!nomorBooking){
+    const q = query(
+
+        collection(db,"reservasi"),
+
+        where("booking","==",nomorBooking)
+
+    );
+
+
+
+    const snapshot = await getDocs(q);
+
+
+
+    if(snapshot.empty){
+
 
         document.getElementById("hasil").innerHTML = `
 
         <div class="hasil-card">
 
-        <h2>Nomor booking kosong</h2>
+        <h2>❌ Data Tidak Ditemukan</h2>
 
         </div>
 
         `;
+
 
         return;
 
@@ -46,112 +65,123 @@ async function cekReservasi(){
 
 
 
-    try{
 
 
-        const q = query(
-
-            collection(db,"reservasi"),
-
-            where("booking","==",nomorBooking)
-
-        );
+    snapshot.forEach((doc)=>{
 
 
+        let data = doc.data();
 
-        const snapshot = await getDocs(q);
-
-
-
-        if(snapshot.empty){
-
-
-            document.getElementById("hasil").innerHTML = `
-
-
-            <div class="hasil-card">
-
-
-            <h2>❌ Data Reservasi Tidak Ditemukan</h2>
-
-
-            <p>Pastikan nomor booking benar.</p>
-
-
-            </div>
-
-
-            `;
-
-
-            return;
-
-
-        }
-
-
-
-
-
-        snapshot.forEach((doc)=>{
-
-
-            let data = doc.data();
-
-
-
-            document.getElementById("hasil").innerHTML = `
-
-
-            <div class="hasil-card">
-
-
-            <h2>✅ Reservasi Ditemukan</h2>
-
-
-            <p><b>Nomor Booking:</b> ${data.booking}</p>
-
-            <p><b>Nama:</b> ${data.nama}</p>
-
-            <p><b>WhatsApp:</b> ${data.wa}</p>
-
-            <p><b>Treatment:</b> ${data.treatment}</p>
-
-            <p><b>Harga:</b> ${data.harga}</p>
-
-            <p><b>Terapis:</b> ${data.terapis}</p>
-
-            <p><b>Tanggal:</b> ${data.tanggal}</p>
-
-            <p><b>Jam:</b> ${data.jam}</p>
-
-            <p><b>Status:</b> ${data.status}</p>
-
-
-            </div>
-
-
-            `;
-
-
-        });
-
-
-
-    }catch(error){
-
-
-        console.error(error);
 
 
         document.getElementById("hasil").innerHTML = `
 
-        <h2>Terjadi kesalahan mengambil data</h2>
+
+        <div class="hasil-card">
+
+
+        <h2>
+        ✅ Reservasi Berhasil
+        </h2>
+
+
+
+        <div class="info">
+
+        <span>🔖 Nomor Booking</span>
+
+        <h3>${data.booking}</h3>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>👤 Nama</span>
+
+        <p>${data.nama}</p>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>💆 Treatment</span>
+
+        <p>${data.treatment}</p>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>💰 Harga</span>
+
+        <p>${data.harga}</p>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>👩 Terapis</span>
+
+        <p>${data.terapis}</p>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>📅 Tanggal</span>
+
+        <p>${data.tanggal}</p>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>🕒 Jam</span>
+
+        <p>${data.jam}</p>
+
+        </div>
+
+
+
+        <div class="info">
+
+        <span>📌 Status</span>
+
+        <p class="status">${data.status}</p>
+
+        </div>
+
+
+
+        <a href="index.html" class="btn-kembali">
+
+        🏠 Kembali ke Beranda
+
+        </a>
+
+
+
+        </div>
+
 
         `;
 
 
-    }
+    });
+
 
 
 }
