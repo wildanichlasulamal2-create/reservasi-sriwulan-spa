@@ -1,139 +1,95 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Reservasi Admin | SIRES Sriwulan Spa</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
-</head>
-
-
-<body>
-
-
-<div class="form-container">
-
-
-<h1>
-Data Reservasi
-</h1>
-
-
-<p>
-Daftar reservasi pelanggan masuk
-</p>
-
-
-<div id="dataBooking"></div>
-
-
-</div>
-
-
-
 <script>
 
+let data = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-let data = JSON.parse(localStorage.getItem("reservasi"));
+// Jika data lama masih berupa object, ubah menjadi array
+if (!Array.isArray(data)) {
+    data = [data];
+}
 
+tampilData();
 
-if(data){
+function tampilData() {
 
+    if (data.length === 0) {
 
-document.getElementById("dataBooking").innerHTML = `
+        document.getElementById("dataBooking").innerHTML = `
+            <p>Belum ada reservasi masuk.</p>
+        `;
+        return;
+    }
 
+    let html = `
+    <table class="table-admin">
+        <tr>
+            <th>No Booking</th>
+            <th>Nama</th>
+            <th>Treatment</th>
+            <th>Tanggal</th>
+            <th>Jam</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    `;
 
-<div class="card">
+    data.forEach((item, index) => {
 
+        html += `
+        <tr>
 
-<h2>
-${data.booking}
-</h2>
+            <td>${item.booking}</td>
 
+            <td>${item.nama}</td>
 
-<p>
-<b>Nama Pelanggan</b>
-<br>
-${data.nama}
-</p>
+            <td>${item.treatment}</td>
 
+            <td>${item.tanggal}</td>
 
-<p>
-<b>Treatment</b>
-<br>
-${data.treatment}
-</p>
+            <td>${item.jam}</td>
 
+            <td>${item.status}</td>
 
-<p>
-<b>Harga</b>
-<br>
-${data.harga}
-</p>
+            <td>
 
+                <button onclick="terima(${index})">
+                ✔
+                </button>
 
-<p>
-<b>Tanggal</b>
-<br>
-${data.tanggal}
-</p>
+                <button onclick="tolak(${index})">
+                ✖
+                </button>
 
+            </td>
 
-<p>
-<b>Jam</b>
-<br>
-${data.jam}
-</p>
+        </tr>
+        `;
 
+    });
 
-<p>
-<b>Terapis</b>
-<br>
-${data.terapis}
-</p>
+    html += "</table>";
 
-
-<p>
-<b>Status</b>
-<br>
-🟡 ${data.status}
-</p>
-
-
-<button onclick="konfirmasi()">
-Konfirmasi
-</button>
-
-
-</div>
-
-
-`;
-
-
-}else{
-
-
-document.getElementById("dataBooking").innerHTML = `
-
-<p>
-Belum ada reservasi masuk
-</p>
-
-`;
+    document.getElementById("dataBooking").innerHTML = html;
 
 }
 
+function terima(index){
 
+    data[index].status = "🟢 Diterima";
 
-function konfirmasi(){
+    localStorage.setItem("reservasi", JSON.stringify(data));
 
-alert("Reservasi berhasil dikonfirmasi");
+    tampilData();
 
 }
+
+function tolak(index){
+
+    data[index].status = "🔴 Ditolak";
+
+    localStorage.setItem("reservasi", JSON.stringify(data));
+
+    tampilData();
+
+}
+
+</script>
