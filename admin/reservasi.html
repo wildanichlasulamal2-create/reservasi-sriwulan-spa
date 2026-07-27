@@ -14,17 +14,21 @@
 
 </head>
 
+
 <body>
 
+
 <div class="form-container">
+
 
 <h1>📋 Dashboard Reservasi</h1>
 
 <p>Kelola seluruh reservasi pelanggan Sriwulan Spa</p>
 
-    <div class="search-box">
 
-        <div class="filter-box">
+
+<div class="search-box">
+
 
 <select id="filterStatus" onchange="filterStatus()">
 
@@ -38,254 +42,136 @@
 
 </select>
 
-</div>
 
-<input
+
+<input 
 type="text"
 id="cariBooking"
 placeholder="🔍 Cari Nomor Booking atau Nama..."
 onkeyup="cariReservasi()">
 
+
 </div>
 
+
+
+
 <div class="dashboard-admin">
+
 
 <div class="stat-card">
 <h3>Total Reservasi</h3>
 <h2 id="totalReservasi">0</h2>
 </div>
 
+
 <div class="stat-card">
 <h3>🟡 Menunggu</h3>
 <h2 id="menunggu">0</h2>
 </div>
+
 
 <div class="stat-card">
 <h3>🟢 Dikonfirmasi</h3>
 <h2 id="dikonfirmasi">0</h2>
 </div>
 
+
 <div class="stat-card">
 <h3>✅ Selesai</h3>
 <h2 id="selesai">0</h2>
 </div>
 
+
 </div>
+
+
 
 <div id="dataBooking"></div>
 
+
+
 <script>
+
 
 let reservasi = JSON.parse(localStorage.getItem("reservasi")) || [];
 
+
 if(!Array.isArray(reservasi)){
-    reservasi=[reservasi];
+reservasi=[reservasi];
 }
 
-//========================
+
+
+// ========================
 // DASHBOARD
-//========================
+// ========================
 
-document.getElementById("totalReservasi").innerHTML=reservasi.length;
 
-document.getElementById("menunggu").innerHTML=
+function updateDashboard(){
+
+
+document.getElementById("totalReservasi").innerHTML =
+reservasi.length;
+
+
+document.getElementById("menunggu").innerHTML =
 reservasi.filter(r=>r.status.includes("Menunggu")).length;
 
-document.getElementById("dikonfirmasi").innerHTML=
+
+document.getElementById("dikonfirmasi").innerHTML =
 reservasi.filter(r=>r.status.includes("Dikonfirmasi")).length;
 
-document.getElementById("selesai").innerHTML=
+
+document.getElementById("selesai").innerHTML =
 reservasi.filter(r=>r.status.includes("Selesai")).length;
 
 
-//========================
-// TABEL
-//========================
-
-let html=`
-
-<table class="table-admin">
-
-<tr>
-
-<th>No</th>
-
-<th>No Booking</th>
-
-<th>Nama</th>
-
-<th>Treatment</th>
-
-<th>Tanggal</th>
-
-<th>Jam</th>
-
-<th>Terapis</th>
-
-<th>Status</th>
-
-<th>Aksi</th>
-
-</tr>
-
-`;
-
-reservasi.forEach((data,index)=>{
-
-html+=`
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>${data.booking}</td>
-
-<td>${data.nama}</td>
-
-<td>${data.treatment}</td>
-
-<td>${data.tanggal}</td>
-
-<td>${data.jam}</td>
-
-<td>${data.terapis}</td>
-
-<td>${data.status}</td>
-
-<td>
-
-<button onclick="konfirmasi(${index})">
-Konfirmasi
-</button>
-
-<button onclick="selesai(${index})">
-Selesai
-</button>
-
-<button onclick="hapusReservasi(${index})">
-Hapus
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-html+="</table>";
-
-document.getElementById("dataBooking").innerHTML=html;
-
-
-//========================
-// FUNCTION
-//========================
-
-function simpan(){
-
-localStorage.setItem(
-"reservasi",
-JSON.stringify(reservasi)
-);
-
-location.reload();
-
-}
-
-function konfirmasi(index){
-
-reservasi[index].status="🟢 Dikonfirmasi";
-
-simpan();
-
-}
-
-function selesai(index){
-
-reservasi[index].status="✅ Selesai";
-
-simpan();
-
-}
-
-function hapusReservasi(index){
-
-if(confirm("Yakin ingin menghapus reservasi?")){
-
-reservasi.splice(index,1);
-
-simpan();
-
-}
-
 }
 
 
-    function detailReservasi(index){
 
-let data = reservasi[index];
+// ========================
+// TAMPIL DATA
+// ========================
 
 
-alert(
-"📋 DETAIL RESERVASI\n\n" +
+function tampilkanData(data){
 
-"🔖 Booking : " + data.booking + "\n" +
-
-"👤 Nama : " + data.nama + "\n" +
-
-"📱 WhatsApp : " + data.wa + "\n" +
-
-"💆 Treatment : " + data.treatment + "\n" +
-
-"👩 Terapis : " + data.terapis + "\n" +
-
-"📅 Tanggal : " + data.tanggal + "\n" +
-
-"🕒 Jam : " + data.jam + "\n" +
-
-"📌 Status : " + data.status
-
-);
-
-}
-
-    function tampilkanData(data){
 
 let html = `
 
+
 <table class="table-admin">
+
 
 <tr>
 
 <th>No</th>
-
 <th>No Booking</th>
-
 <th>Nama</th>
-
 <th>Treatment</th>
-
 <th>Tanggal</th>
-
 <th>Jam</th>
-
 <th>Terapis</th>
-
 <th>Status</th>
-
 <th>Aksi</th>
 
 </tr>
 
+
 `;
+
+
 
 data.forEach((item,index)=>{
 
+
 html += `
 
+
 <tr>
+
 
 <td>${index+1}</td>
 
@@ -303,86 +189,265 @@ html += `
 
 <td>${item.status}</td>
 
+
+
 <td>
+
 
 <button onclick="detailReservasi(${index})">
 📋 Detail
 </button>
 
+
+
 <button onclick="konfirmasi(${index})">
 🟢 Konfirmasi
 </button>
+
+
 
 <button onclick="selesai(${index})">
 ✅ Selesai
 </button>
 
+
+
 <button onclick="hapusReservasi(${index})">
 🗑️ Hapus
 </button>
 
+
+
 </td>
+
 
 </tr>
 
+
 `;
+
 
 });
 
+
+
 html += "</table>";
 
-tampilkanData(reservasi);
-        
-        }
 
-    function cariReservasi(){
 
-let keyword = document
-.getElementById("cariBooking")
-.value
-.toLowerCase();
+document.getElementById("dataBooking").innerHTML = html;
 
-let hasil = reservasi.filter(item =>
 
-item.booking.toLowerCase().includes(keyword) ||
+}
 
-item.nama.toLowerCase().includes(keyword)
+
+
+
+// ========================
+// SIMPAN
+// ========================
+
+
+function simpan(){
+
+
+localStorage.setItem(
+"reservasi",
+JSON.stringify(reservasi)
+);
+
+
+location.reload();
+
+
+}
+
+
+
+
+// ========================
+// AKSI
+// ========================
+
+
+function konfirmasi(index){
+
+
+reservasi[index].status="🟢 Dikonfirmasi";
+
+simpan();
+
+
+}
+
+
+
+function selesai(index){
+
+
+reservasi[index].status="✅ Selesai";
+
+simpan();
+
+
+}
+
+
+
+function hapusReservasi(index){
+
+
+if(confirm("Yakin ingin menghapus reservasi?")){
+
+
+reservasi.splice(index,1);
+
+simpan();
+
+
+}
+
+
+}
+
+
+
+
+// ========================
+// DETAIL
+// ========================
+
+
+function detailReservasi(index){
+
+
+let data = reservasi[index];
+
+
+alert(
+
+"📋 DETAIL RESERVASI\n\n"+
+
+"🔖 Booking : "+data.booking+"\n"+
+
+"👤 Nama : "+data.nama+"\n"+
+
+"📱 WhatsApp : "+data.wa+"\n"+
+
+"💆 Treatment : "+data.treatment+"\n"+
+
+"👩 Terapis : "+data.terapis+"\n"+
+
+"📅 Tanggal : "+data.tanggal+"\n"+
+
+"🕒 Jam : "+data.jam+"\n"+
+
+"📌 Status : "+data.status
 
 );
 
+
+}
+
+
+
+
+// ========================
+// SEARCH
+// ========================
+
+
+function cariReservasi(){
+
+
+let keyword =
+document.getElementById("cariBooking")
+.value
+.toLowerCase();
+
+
+
+let hasil = reservasi.filter(item =>
+
+
+item.booking.toLowerCase().includes(keyword)
+
+||
+
+item.nama.toLowerCase().includes(keyword)
+
+
+);
+
+
+
 tampilkanData(hasil);
+
+
+}
+
+
+
+
+
+// ========================
+// FILTER
+// ========================
+
 
 function filterStatus(){
 
-let status = document
-.getElementById("filterStatus")
-.value;
+
+let status =
+document.getElementById("filterStatus").value;
+
+
 
 if(status==""){
+
 
 tampilkanData(reservasi);
 
 return;
 
+
 }
 
-    let hasil = reservasi.filter(item=>
+
+
+let hasil = reservasi.filter(item =>
+
 
 item.status.includes(status)
 
+
 );
 
+
+
 tampilkanData(hasil);
+
 
 }
 
 
-    </script>
+
+
+// LOAD AWAL
+
+
+updateDashboard();
+
+tampilkanData(reservasi);
+
+
+
+</script>
+
 
 </div>
+
 
 </body>
 
 </html>
-
-
