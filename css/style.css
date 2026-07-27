@@ -664,3 +664,33 @@ background:#b4882b;
 }
 
 }
+
+/* ==========================
+   SEARCH ADMIN
+========================== */
+
+.search-box{
+    margin:25px 0;
+}
+
+.search-box input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.search-box input:focus{
+
+    border:1px solid #8b5e3c;
+
+}
