@@ -27,7 +27,6 @@
 
 
 
-
 <div class="search-box">
 
 
@@ -57,7 +56,6 @@ onkeyup="cariReservasi()">
 
 
 
-
 <div class="dashboard-admin">
 
 
@@ -67,19 +65,16 @@ onkeyup="cariReservasi()">
 </div>
 
 
-
 <div class="stat-card">
 <h3>🟡 Menunggu</h3>
 <h2 id="menunggu">0</h2>
 </div>
 
 
-
 <div class="stat-card">
 <h3>🟢 Dikonfirmasi</h3>
 <h2 id="dikonfirmasi">0</h2>
 </div>
-
 
 
 <div class="stat-card">
@@ -89,7 +84,6 @@ onkeyup="cariReservasi()">
 
 
 </div>
-
 
 
 
@@ -119,10 +113,6 @@ reservasi=[reservasi];
 
 
 
-// ========================
-// DASHBOARD
-// ========================
-
 
 function updateDashboard(){
 
@@ -149,9 +139,6 @@ reservasi.filter(r=>r.status.includes("Selesai")).length;
 
 
 
-// ========================
-// TAMPIL DATA
-// ========================
 
 
 function tampilkanData(data){
@@ -197,7 +184,6 @@ let html = `
 data.forEach((item,index)=>{
 
 
-
 html += `
 
 
@@ -232,7 +218,9 @@ html += `
 
 
 
+
 <td>
+
 
 
 <button onclick="detailReservasi(${index})">
@@ -259,11 +247,20 @@ html += `
 
 
 
+<button onclick="kirimWA(${index})">
+
+📱 Chat WA
+
+</button>
+
+
+
 <button onclick="hapusReservasi(${index})">
 
 🗑️ Hapus
 
 </button>
+
 
 
 </td>
@@ -273,7 +270,6 @@ html += `
 
 
 `;
-
 
 
 });
@@ -287,7 +283,6 @@ html += "</table>";
 document.getElementById("dataBooking").innerHTML = html;
 
 
-
 }
 
 
@@ -295,10 +290,6 @@ document.getElementById("dataBooking").innerHTML = html;
 
 
 
-
-// ========================
-// SIMPAN
-// ========================
 
 
 function simpan(){
@@ -324,10 +315,6 @@ location.reload();
 
 
 
-// ========================
-// AKSI
-// ========================
-
 
 function konfirmasi(index){
 
@@ -343,6 +330,7 @@ simpan();
 
 
 
+
 function selesai(index){
 
 
@@ -353,6 +341,75 @@ simpan();
 
 
 }
+
+
+
+
+
+
+
+// ========================
+// WHATSAPP OTOMATIS
+// ========================
+
+
+function kirimWA(index){
+
+
+let data = reservasi[index];
+
+
+
+let nomor = data.wa.replace(/^0/, "62");
+
+
+
+let pesan =
+
+
+"Halo Kak " + data.nama +
+
+", kami dari Sriwulan Spa 😊\n\n" +
+
+
+"Detail Reservasi:\n" +
+
+"🔖 Booking : " + data.booking + "\n" +
+
+"💆 Treatment : " + data.treatment + "\n" +
+
+"💰 Harga : " + data.harga + "\n" +
+
+"👩 Terapis : " + data.terapis + "\n" +
+
+"📅 Tanggal : " + data.tanggal + "\n" +
+
+"🕒 Jam : " + data.jam + "\n\n" +
+
+"Terima kasih telah memilih Sriwulan Spa 🌸";
+
+
+
+let url =
+
+"https://wa.me/" +
+
+nomor +
+
+"?text=" +
+
+encodeURIComponent(pesan);
+
+
+
+window.open(url,"_blank");
+
+
+}
+
+
+
+
 
 
 
@@ -380,10 +437,6 @@ simpan();
 
 
 
-// ========================
-// DETAIL
-// ========================
-
 
 function detailReservasi(index){
 
@@ -397,30 +450,21 @@ alert(
 
 "📋 DETAIL RESERVASI\n\n"+
 
-
 "🔖 Booking : "+data.booking+"\n"+
-
 
 "👤 Nama : "+data.nama+"\n"+
 
-
 "📱 WhatsApp : "+data.wa+"\n"+
-
 
 "💆 Treatment : "+data.treatment+"\n"+
 
-
 "💰 Harga : "+data.harga+"\n"+
-
 
 "👩 Terapis : "+data.terapis+"\n"+
 
-
 "📅 Tanggal : "+data.tanggal+"\n"+
 
-
 "🕒 Jam : "+data.jam+"\n"+
-
 
 "📌 Status : "+data.status
 
@@ -435,10 +479,6 @@ alert(
 
 
 
-
-// ========================
-// SEARCH
-// ========================
 
 
 function cariReservasi(){
@@ -456,15 +496,11 @@ document.getElementById("cariBooking")
 let hasil = reservasi.filter(item =>
 
 
-
 item.booking.toLowerCase().includes(keyword)
-
 
 ||
 
-
 item.nama.toLowerCase().includes(keyword)
-
 
 
 );
@@ -481,10 +517,6 @@ tampilkanData(hasil);
 
 
 
-
-// ========================
-// FILTER
-// ========================
 
 
 function filterStatus(){
@@ -533,13 +565,7 @@ tampilkanData(hasil);
 
 
 
-// ========================
-// LOAD
-// ========================
-
-
 updateDashboard();
-
 
 tampilkanData(reservasi);
 
