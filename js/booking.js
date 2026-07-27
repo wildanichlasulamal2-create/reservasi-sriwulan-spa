@@ -1,4 +1,18 @@
 // ========================
+// IMPORT FIREBASE
+// ========================
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+
+// ========================
 // ELEMENT
 // ========================
 
@@ -32,11 +46,10 @@ const daftarHarga = {
 
 treatment.addEventListener("change", function(){
 
-
     harga.value = "Rp " + daftarHarga[this.value];
 
-
 });
+
 
 
 
@@ -46,162 +59,147 @@ treatment.addEventListener("change", function(){
 // SUBMIT RESERVASI
 // ========================
 
-form.addEventListener("submit", function(e){
-
+form.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
 
 
-
-
-    // Ambil data lama
-
-    let reservasi = JSON.parse(
-
-        localStorage.getItem("reservasi")
-
-    ) || [];
+    try {
 
 
 
+        // Ambil jumlah data untuk nomor booking
+
+        const snapshot = await getDocs(
+            collection(db,"reservasi")
+        );
 
 
-    // Pastikan format array
-
-    if(!Array.isArray(reservasi)){
+        const nomorUrut = snapshot.size + 1;
 
 
-        reservasi = [reservasi];
+
+        const nomorBooking =
+
+            "SRS-" +
+
+            new Date().getFullYear() +
+
+            String(nomorUrut).padStart(3,"0");
+
+
+
+
+
+
+        // ========================
+        // DATA RESERVASI
+        // ========================
+
+
+        let dataBooking = {
+
+
+            booking: nomorBooking,
+
+
+            nama: document.getElementById("nama").value,
+
+
+            wa: document.getElementById("noWa").value,
+
+
+            treatment: document.getElementById("treatment").value,
+
+
+            harga: document.getElementById("harga").value,
+
+
+            terapis: document.getElementById("terapis").value,
+
+
+            tanggal: document.getElementById("tanggal").value,
+
+
+            jam: document.getElementById("jam").value,
+
+
+            status: "🟡 Menunggu",
+
+
+            waktu: new Date()
+
+        };
+
+
+
+
+
+
+        // ========================
+        // SIMPAN FIRESTORE
+        // ========================
+
+
+        await addDoc(
+
+            collection(db,"reservasi"),
+
+            dataBooking
+
+        );
+
+
+
+
+
+
+
+        // ========================
+        // PESAN BERHASIL
+        // ========================
+
+
+        alert(
+
+            "✅ Reservasi berhasil dibuat\n\n" +
+
+            "Nomor Booking : " + nomorBooking
+
+        );
+
+
+
+
+
+
+        // ========================
+        // PINDAH HALAMAN CEK
+        // ========================
+
+
+        window.location.href =
+
+        "/reservasi-sriwulan-spa/cek-reservasi.html";
+
+
+
+
+    } catch(error){
+
+
+        console.error(error);
+
+
+        alert(
+
+            "❌ Gagal menyimpan reservasi"
+
+        );
 
 
     }
-
-
-
-
-
-    // ========================
-    // NOMOR BOOKING
-    // ========================
-
-
-    const nomorUrut = reservasi.length + 1;
-
-
-
-    const nomorBooking =
-
-
-        "SRS-" +
-
-        new Date().getFullYear() +
-
-        String(nomorUrut).padStart(3,"0");
-
-
-
-
-
-
-
-    // ========================
-    // DATA RESERVASI
-    // ========================
-
-
-    let dataBooking = {
-
-
-        booking: nomorBooking,
-
-
-        nama: document.getElementById("nama").value,
-
-
-        wa: document.getElementById("noWa").value,
-
-
-        treatment: document.getElementById("treatment").value,
-
-
-        harga: document.getElementById("harga").value,
-
-
-        terapis: document.getElementById("terapis").value,
-
-
-        tanggal: document.getElementById("tanggal").value,
-
-
-        jam: document.getElementById("jam").value,
-
-
-        status: "🟡 Menunggu"
-
-
-    };
-
-
-
-
-
-
-
-
-    // ========================
-    // SIMPAN DATA
-    // ========================
-
-
-    reservasi.push(dataBooking);
-
-
-
-
-    localStorage.setItem(
-
-        "reservasi",
-
-        JSON.stringify(reservasi)
-
-    );
-
-
-
-
-
-
-
-    // ========================
-    // PESAN BERHASIL
-    // ========================
-
-
-    alert(
-
-        "✅ Reservasi berhasil dibuat\n\n" +
-
-        "Nomor Booking : " +
-
-        nomorBooking
-
-    );
-
-
-
-
-
-
-
-    // ========================
-    // PINDAH HALAMAN CEK
-    // ========================
-
-
-    window.location.href =
-
-    "/reservasi-sriwulan-spa/cek-reservasi.html";
 
 
 
