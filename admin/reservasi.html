@@ -366,6 +366,17 @@ return;
 
 }
 
+    let hasil = reservasi.filter(item=>
+
+item.status.includes(status)
+
+);
+
+tampilkanData(hasil);
+
+}
+
+
     </script>
 
 </div>
@@ -375,12 +386,3 @@ return;
 </html>
 
 
-let hasil = reservasi.filter(item=>
-
-item.status.includes(status)
-
-);
-
-tampilkanData(hasil);
-
-}
