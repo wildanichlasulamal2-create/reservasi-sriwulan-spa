@@ -1,5 +1,19 @@
 let reservasi = JSON.parse(localStorage.getItem("reservasi")) || [];
 
+// Dashboard Statistik
+let total = reservasi.length;
+
+let menunggu = reservasi.filter(r => r.status.includes("Menunggu")).length;
+
+let dikonfirmasi = reservasi.filter(r => r.status.includes("Dikonfirmasi")).length;
+
+let selesaiJumlah = reservasi.filter(r => r.status.includes("Selesai")).length;
+
+document.getElementById("totalReservasi").textContent = total;
+document.getElementById("menunggu").textContent = menunggu;
+document.getElementById("dikonfirmasi").textContent = dikonfirmasi;
+document.getElementById("selesai").textContent = selesaiJumlah;
+
 let html = `
 <table class="table-admin">
 
