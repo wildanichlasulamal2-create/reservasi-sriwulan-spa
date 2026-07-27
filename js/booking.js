@@ -8,6 +8,7 @@ const form = document.getElementById("bookingForm");
 
 
 
+
 // ========================
 // DAFTAR HARGA
 // ========================
@@ -24,15 +25,20 @@ const daftarHarga = {
 
 
 
+
 // ========================
-// OTOMATIS HARGA TREATMENT
+// OTOMATIS HARGA
 // ========================
 
-treatment.addEventListener("change", function () {
+treatment.addEventListener("change", function(){
+
 
     harga.value = "Rp " + daftarHarga[this.value];
 
+
 });
+
+
 
 
 
@@ -47,32 +53,45 @@ form.addEventListener("submit", function(e){
 
 
 
+
+
     // Ambil data lama
 
     let reservasi = JSON.parse(
+
         localStorage.getItem("reservasi")
+
     ) || [];
 
 
 
-    // Jika data lama bukan array
+
+
+    // Pastikan format array
 
     if(!Array.isArray(reservasi)){
 
+
         reservasi = [reservasi];
+
 
     }
 
 
 
+
+
     // ========================
-    // NOMOR BOOKING OTOMATIS
+    // NOMOR BOOKING
     // ========================
+
 
     const nomorUrut = reservasi.length + 1;
 
 
+
     const nomorBooking =
+
 
         "SRS-" +
 
@@ -84,9 +103,12 @@ form.addEventListener("submit", function(e){
 
 
 
+
+
     // ========================
     // DATA RESERVASI
     // ========================
+
 
     let dataBooking = {
 
@@ -124,11 +146,16 @@ form.addEventListener("submit", function(e){
 
 
 
+
+
+
     // ========================
     // SIMPAN DATA
     // ========================
 
+
     reservasi.push(dataBooking);
+
 
 
 
@@ -144,9 +171,12 @@ form.addEventListener("submit", function(e){
 
 
 
+
+
     // ========================
-    // NOTIFIKASI
+    // PESAN BERHASIL
     // ========================
+
 
     alert(
 
@@ -162,13 +192,17 @@ form.addEventListener("submit", function(e){
 
 
 
+
+
     // ========================
-    // PINDAH KE CEK RESERVASI
+    // PINDAH HALAMAN CEK
     // ========================
+
 
     window.location.href =
 
     "/reservasi-sriwulan-spa/cek-reservasi.html";
+
 
 
 });
