@@ -280,6 +280,24 @@ html += "</table>";
 
 tampilkanData(reservasi);
 
+    function cariReservasi(){
+
+let keyword = document
+.getElementById("cariBooking")
+.value
+.toLowerCase();
+
+let hasil = reservasi.filter(item =>
+
+item.booking.toLowerCase().includes(keyword) ||
+
+item.nama.toLowerCase().includes(keyword)
+
+);
+
+tampilkanData(hasil);
+
+
 }
 
 </div>
