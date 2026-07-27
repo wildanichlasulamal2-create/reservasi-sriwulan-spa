@@ -9,25 +9,33 @@
 
 <title>Reservasi | Sriwulan Spa</title>
 
+
 <link rel="stylesheet" href="css/style.css">
+
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
 </head>
+
 
 
 <body>
 
 
+
 <section class="booking">
+
 
 
 <div class="booking-box">
 
 
+
 <h1>
 Reservasi Online
 </h1>
+
 
 
 <p>
@@ -36,7 +44,11 @@ Silakan isi data reservasi Anda.
 
 
 
+
+
 <form id="bookingForm">
+
+
 
 
 
@@ -44,11 +56,22 @@ Silakan isi data reservasi Anda.
 Nama Lengkap
 </label>
 
-<input 
-type="text" 
+
+<input
+
+type="text"
+
 id="nama"
+
 placeholder="Masukkan nama lengkap"
+
 required>
+
+
+
+<br>
+
+
 
 
 
@@ -56,11 +79,22 @@ required>
 Nomor WhatsApp
 </label>
 
-<input 
-type="tel" 
-id="wa"
+
+<input
+
+type="tel"
+
+id="noWa"
+
 placeholder="08xxxxxxxxxx"
+
 required>
+
+
+
+<br>
+
+
 
 
 
@@ -69,7 +103,9 @@ Pilih Treatment
 </label>
 
 
+
 <select id="treatment" required>
+
 
 
 <option value="">
@@ -77,22 +113,34 @@ Pilih Treatment
 </option>
 
 
-<option value="Massage Relax" data-harga="150000">
+
+<option value="Massage Relax">
 Massage Relax
 </option>
 
 
-<option value="Facial Treatment" data-harga="200000">
+
+<option value="Facial Treatment">
 Facial Treatment
 </option>
 
 
-<option value="Body Scrub" data-harga="250000">
+
+<option value="Body Scrub">
 Body Scrub
 </option>
 
 
+
 </select>
+
+
+
+
+
+<br>
+
+
 
 
 
@@ -101,11 +149,22 @@ Harga
 </label>
 
 
+
 <input
+
 type="text"
+
 id="harga"
+
 placeholder="Harga otomatis"
+
 readonly>
+
+
+
+<br>
+
+
 
 
 
@@ -114,7 +173,9 @@ Pilih Terapis
 </label>
 
 
+
 <select id="terapis" required>
+
 
 
 <option value="">
@@ -122,9 +183,11 @@ Pilih Terapis
 </option>
 
 
+
 <option value="Dewi">
 Dewi
 </option>
+
 
 
 <option value="Sinta">
@@ -132,12 +195,22 @@ Sinta
 </option>
 
 
+
 <option value="Ayu">
 Ayu
 </option>
 
 
+
 </select>
+
+
+
+
+
+<br>
+
+
 
 
 
@@ -146,10 +219,21 @@ Tanggal Reservasi
 </label>
 
 
-<input 
+
+<input
+
 type="date"
+
 id="tanggal"
+
 required>
+
+
+
+
+
+<br>
+
 
 
 
@@ -159,11 +243,23 @@ Jam Reservasi
 </label>
 
 
-<input 
+
+<input
+
 type="time"
+
 id="jam"
+
 required>
-  
+
+
+
+
+
+
+
+<br>
+
 
 
 <button type="submit">
@@ -174,17 +270,321 @@ Lanjutkan Reservasi
 
 
 
+
+
 </form>
 
 
+
 </div>
+
 
 
 </section>
 
 
 
+
+
+
 <script src="js/booking.js"></script>
+
+
+
+</body>
+
+
+</html><!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reservasi | Sriwulan Spa</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<section class="booking">
+
+
+
+<div class="booking-box">
+
+
+
+<h1>
+Reservasi Online
+</h1>
+
+
+
+<p>
+Silakan isi data reservasi Anda.
+</p>
+
+
+
+
+
+<form id="bookingForm">
+
+
+
+
+
+<label>
+Nama Lengkap
+</label>
+
+
+<input
+
+type="text"
+
+id="nama"
+
+placeholder="Masukkan nama lengkap"
+
+required>
+
+
+
+<br>
+
+
+
+
+
+<label>
+Nomor WhatsApp
+</label>
+
+
+<input
+
+type="tel"
+
+id="noWa"
+
+placeholder="08xxxxxxxxxx"
+
+required>
+
+
+
+<br>
+
+
+
+
+
+<label>
+Pilih Treatment
+</label>
+
+
+
+<select id="treatment" required>
+
+
+
+<option value="">
+-- Pilih Treatment --
+</option>
+
+
+
+<option value="Massage Relax">
+Massage Relax
+</option>
+
+
+
+<option value="Facial Treatment">
+Facial Treatment
+</option>
+
+
+
+<option value="Body Scrub">
+Body Scrub
+</option>
+
+
+
+</select>
+
+
+
+
+
+<br>
+
+
+
+
+
+<label>
+Harga
+</label>
+
+
+
+<input
+
+type="text"
+
+id="harga"
+
+placeholder="Harga otomatis"
+
+readonly>
+
+
+
+<br>
+
+
+
+
+
+<label>
+Pilih Terapis
+</label>
+
+
+
+<select id="terapis" required>
+
+
+
+<option value="">
+-- Pilih Terapis --
+</option>
+
+
+
+<option value="Dewi">
+Dewi
+</option>
+
+
+
+<option value="Sinta">
+Sinta
+</option>
+
+
+
+<option value="Ayu">
+Ayu
+</option>
+
+
+
+</select>
+
+
+
+
+
+<br>
+
+
+
+
+
+<label>
+Tanggal Reservasi
+</label>
+
+
+
+<input
+
+type="date"
+
+id="tanggal"
+
+required>
+
+
+
+
+
+<br>
+
+
+
+
+
+<label>
+Jam Reservasi
+</label>
+
+
+
+<input
+
+type="time"
+
+id="jam"
+
+required>
+
+
+
+
+
+
+
+<br>
+
+
+
+<button type="submit">
+
+Lanjutkan Reservasi
+
+</button>
+
+
+
+
+
+</form>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<script src="js/booking.js"></script>
+
 
 
 </body>
