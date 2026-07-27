@@ -48,6 +48,8 @@ form.addEventListener("submit", function (e) {
 
         jam: document.getElementById("jam").value,
 
+        wa: document.getElementById("whatsapp").value,
+
         status: "🟡 Menunggu"
 
     };
