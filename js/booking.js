@@ -2,73 +2,70 @@ const treatment = document.getElementById("treatment");
 const harga = document.getElementById("harga");
 const form = document.getElementById("bookingForm");
 
-
 const daftarHarga = {
-    "Massage Relax":"150000",
-    "Facial Treatment":"120000",
-    "Body Scrub":"175000"
+    "Massage Relax": "150000",
+    "Facial Treatment": "120000",
+    "Body Scrub": "175000"
 };
 
-
-treatment.addEventListener("change", function(){
-
+treatment.addEventListener("change", function () {
     harga.value = "Rp " + daftarHarga[this.value];
-
 });
 
-
-
-form.addEventListener("submit", function(e){
+form.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
+    // Ambil data lama
+    let reservasi = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-    let nomorBooking =
-    "SPA" + Math.floor(100000 + Math.random()*900000);
+    // Jika masih format lama (object), ubah jadi array
+    if (!Array.isArray(reservasi)) {
+        reservasi = [reservasi];
+    }
 
+    // Nomor booking otomatis
+    const nomorUrut = reservasi.length + 1;
 
+    const nomorBooking =
+        "SRS-" +
+        new Date().getFullYear() +
+        String(nomorUrut).padStart(3, "0");
 
     let dataBooking = {
 
-        booking : nomorBooking,
+        booking: nomorBooking,
 
-        nama :
-        document.getElementById("nama").value,
+        nama: document.getElementById("nama").value,
 
-        treatment :
-        document.getElementById("treatment").value,
+        treatment: document.getElementById("treatment").value,
 
-        harga :
-        document.getElementById("harga").value,
+        harga: document.getElementById("harga").value,
 
-        terapis :
-        document.getElementById("terapis").value,
+        terapis: document.getElementById("terapis").value,
 
-        tanggal :
-        document.getElementById("tanggal").value,
+        tanggal: document.getElementById("tanggal").value,
 
-        jam :
-        document.getElementById("jam").value,
+        jam: document.getElementById("jam").value,
 
-        status :
-        "Menunggu Konfirmasi"
+        status: "🟡 Menunggu"
 
     };
 
+    // Tambahkan ke array
+    reservasi.push(dataBooking);
 
+    // Simpan kembali
     localStorage.setItem(
         "reservasi",
-        JSON.stringify(dataBooking)
+        JSON.stringify(reservasi)
     );
-
 
     alert(
-        "Reservasi berhasil dibuat\nNomor Booking: "
-        + nomorBooking
+        "Reservasi berhasil dibuat\nNomor Booking : " +
+        nomorBooking
     );
 
-
-    window.location.href="/reservasi-sriwulan-spa/cek-reservasi.html";
-
+    window.location.href = "/reservasi-sriwulan-spa/cek-reservasi.html";
 
 });
