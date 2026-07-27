@@ -14,16 +14,17 @@ import {
 
 
 
-// ========================
-// AMBIL DATA RESERVASI
-// ========================
-
 let reservasi = [];
 
 
+
+// ========================
+// LOAD DATA FIREBASE
+// ========================
+
 async function loadReservasi(){
 
-    const data = await getDocs(
+    const snapshot = await getDocs(
         collection(db,"reservasi")
     );
 
@@ -31,7 +32,7 @@ async function loadReservasi(){
     reservasi = [];
 
 
-    data.forEach((item)=>{
+    snapshot.forEach((item)=>{
 
         reservasi.push({
 
@@ -44,7 +45,38 @@ async function loadReservasi(){
     });
 
 
-    tampilkanReservasi();
+    updateDashboard();
+
+    tampilkanData(reservasi);
+
+}
+
+
+
+
+
+// ========================
+// DASHBOARD
+// ========================
+
+function updateDashboard(){
+
+
+document.getElementById("totalReservasi").innerHTML =
+reservasi.length;
+
+
+document.getElementById("menunggu").innerHTML =
+reservasi.filter(r=>r.status.includes("Menunggu")).length;
+
+
+document.getElementById("dikonfirmasi").innerHTML =
+reservasi.filter(r=>r.status.includes("Dikonfirmasi")).length;
+
+
+document.getElementById("selesai").innerHTML =
+reservasi.filter(r=>r.status.includes("Selesai")).length;
+
 
 }
 
@@ -56,63 +88,100 @@ async function loadReservasi(){
 // TAMPILKAN DATA
 // ========================
 
-function tampilkanReservasi(){
+function tampilkanData(data){
 
 
-    const tbody = document.getElementById("tabelReservasi");
+let html = `
+
+<table class="table-admin">
+
+<tr>
+
+<th>No</th>
+<th>No Booking</th>
+<th>Nama</th>
+<th>No WhatsApp</th>
+<th>Treatment</th>
+<th>Tanggal</th>
+<th>Jam</th>
+<th>Terapis</th>
+<th>Status</th>
+<th>Aksi</th>
+
+</tr>
+
+`;
 
 
-    tbody.innerHTML = "";
+
+data.forEach((item,index)=>{
 
 
+html += `
 
-    reservasi.forEach((r,index)=>{
+<tr>
 
+<td>${index+1}</td>
 
-        tbody.innerHTML += `
+<td>${item.booking}</td>
 
-        <tr>
+<td>${item.nama}</td>
 
-            <td>${r.booking}</td>
+<td>${item.wa}</td>
 
-            <td>${r.nama}</td>
+<td>${item.treatment}</td>
 
-            <td>${r.treatment}</td>
+<td>${item.tanggal}</td>
 
-            <td>${r.terapis}</td>
+<td>${item.jam}</td>
 
-            <td>${r.tanggal}</td>
+<td>${item.terapis}</td>
 
-            <td>${r.jam}</td>
-
-            <td>${r.status}</td>
-
-
-            <td>
-
-                <button onclick="konfirmasi('${r.id}')">
-                Konfirmasi
-                </button>
+<td>${item.status}</td>
 
 
-                <button onclick="selesai('${r.id}')">
-                Selesai
-                </button>
+<td>
 
 
-                <button onclick="hapusReservasi('${r.id}')">
-                Hapus
-                </button>
-
-            </td>
+<button onclick="detailReservasi(${index})">
+📋 Detail
+</button>
 
 
-        </tr>
+<button onclick="konfirmasi('${item.id}')">
+🟢 Konfirmasi
+</button>
 
-        `;
+
+<button onclick="selesai('${item.id}')">
+✅ Selesai
+</button>
 
 
-    });
+<button onclick="kirimWA(${index})">
+📱 Chat WA
+</button>
+
+
+<button class="btn-hapus-kecil" onclick="hapusReservasi('${item.id}')">
+🗑️
+</button>
+
+
+</td>
+
+
+</tr>
+
+`;
+
+});
+
+
+html += "</table>";
+
+
+document.getElementById("dataBooking").innerHTML = html;
 
 
 }
@@ -121,57 +190,54 @@ function tampilkanReservasi(){
 
 
 
+
+
 // ========================
-// KONFIRMASI
+// UPDATE STATUS
 // ========================
 
 window.konfirmasi = async function(id){
 
 
-    await updateDoc(
+await updateDoc(
 
-        doc(db,"reservasi",id),
+doc(db,"reservasi",id),
 
-        {
+{
+status:"🟢 Dikonfirmasi"
+}
 
-            status:"🟢 Dikonfirmasi"
-
-        }
-
-    );
+);
 
 
-    loadReservasi();
+loadReservasi();
+
 
 }
 
 
 
-
-
-// ========================
-// SELESAI
-// ========================
 
 window.selesai = async function(id){
 
 
-    await updateDoc(
+await updateDoc(
 
-        doc(db,"reservasi",id),
+doc(db,"reservasi",id),
 
-        {
+{
+status:"✅ Selesai"
+}
 
-            status:"✅ Selesai"
-
-        }
-
-    );
+);
 
 
-    loadReservasi();
+loadReservasi();
+
 
 }
+
+
 
 
 
@@ -184,20 +250,20 @@ window.selesai = async function(id){
 window.hapusReservasi = async function(id){
 
 
-    if(confirm("Yakin ingin menghapus reservasi?")){
+if(confirm("Yakin ingin menghapus reservasi?")){
 
 
-        await deleteDoc(
+await deleteDoc(
 
-            doc(db,"reservasi",id)
+doc(db,"reservasi",id)
 
-        );
-
-
-        loadReservasi();
+);
 
 
-    }
+loadReservasi();
+
+
+}
 
 
 }
@@ -206,5 +272,179 @@ window.hapusReservasi = async function(id){
 
 
 
-// Jalankan
+
+
+// ========================
+// DETAIL
+// ========================
+
+window.detailReservasi = function(index){
+
+
+let data = reservasi[index];
+
+
+alert(
+
+"📋 DETAIL RESERVASI\n\n"+
+
+"🔖 Booking : "+data.booking+"\n"+
+
+"👤 Nama : "+data.nama+"\n"+
+
+"📱 WhatsApp : "+data.wa+"\n"+
+
+"💆 Treatment : "+data.treatment+"\n"+
+
+"💰 Harga : "+data.harga+"\n"+
+
+"👩 Terapis : "+data.terapis+"\n"+
+
+"📅 Tanggal : "+data.tanggal+"\n"+
+
+"🕒 Jam : "+data.jam+"\n"+
+
+"📌 Status : "+data.status
+
+);
+
+
+}
+
+
+
+
+
+
+
+// ========================
+// WHATSAPP
+// ========================
+
+window.kirimWA = function(index){
+
+
+let data = reservasi[index];
+
+
+let nomor = data.wa.replace(/^0/,"62");
+
+
+let pesan =
+
+"Halo Kak "+data.nama+
+", kami dari Sriwulan Spa 😊\n\n"+
+
+"Detail Reservasi:\n"+
+
+"🔖 Booking : "+data.booking+"\n"+
+
+"💆 Treatment : "+data.treatment+"\n"+
+
+"💰 Harga : "+data.harga+"\n"+
+
+"👩 Terapis : "+data.terapis+"\n"+
+
+"📅 Tanggal : "+data.tanggal+"\n"+
+
+"🕒 Jam : "+data.jam+"\n\n"+
+
+"Terima kasih telah memilih Sriwulan Spa 🌸";
+
+
+window.open(
+
+"https://wa.me/"+nomor+
+"?text="+encodeURIComponent(pesan),
+
+"_blank"
+
+);
+
+
+}
+
+
+
+
+
+
+
+// ========================
+// SEARCH
+// ========================
+
+window.cariReservasi=function(){
+
+
+let keyword =
+document.getElementById("cariBooking")
+.value.toLowerCase();
+
+
+
+let hasil = reservasi.filter(item=>
+
+item.booking.toLowerCase().includes(keyword)
+
+||
+
+item.nama.toLowerCase().includes(keyword)
+
+);
+
+
+
+tampilkanData(hasil);
+
+
+}
+
+
+
+
+
+
+
+// ========================
+// FILTER
+// ========================
+
+window.filterStatus=function(){
+
+
+let status =
+document.getElementById("filterStatus").value;
+
+
+
+if(status==""){
+
+tampilkanData(reservasi);
+
+return;
+
+}
+
+
+
+let hasil = reservasi.filter(item=>
+
+item.status.includes(status)
+
+);
+
+
+
+tampilkanData(hasil);
+
+
+}
+
+
+
+
+
+
+// MULAI
 loadReservasi();
