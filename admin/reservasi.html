@@ -27,6 +27,7 @@
 
 
 
+
 <div class="search-box">
 
 
@@ -56,6 +57,7 @@ onkeyup="cariReservasi()">
 
 
 
+
 <div class="dashboard-admin">
 
 
@@ -65,16 +67,19 @@ onkeyup="cariReservasi()">
 </div>
 
 
+
 <div class="stat-card">
 <h3>🟡 Menunggu</h3>
 <h2 id="menunggu">0</h2>
 </div>
 
 
+
 <div class="stat-card">
 <h3>🟢 Dikonfirmasi</h3>
 <h2 id="dikonfirmasi">0</h2>
 </div>
+
 
 
 <div class="stat-card">
@@ -87,19 +92,30 @@ onkeyup="cariReservasi()">
 
 
 
+
+
 <div id="dataBooking"></div>
+
+
 
 
 
 <script>
 
 
-let reservasi = JSON.parse(localStorage.getItem("reservasi")) || [];
+let reservasi = JSON.parse(
+localStorage.getItem("reservasi")
+) || [];
+
 
 
 if(!Array.isArray(reservasi)){
+
 reservasi=[reservasi];
+
 }
+
+
 
 
 
@@ -131,6 +147,8 @@ reservasi.filter(r=>r.status.includes("Selesai")).length;
 
 
 
+
+
 // ========================
 // TAMPIL DATA
 // ========================
@@ -148,24 +166,36 @@ let html = `
 <tr>
 
 <th>No</th>
+
 <th>No Booking</th>
+
 <th>Nama</th>
-<th>noWa</th>
+
+<th>No WhatsApp</th>
+
 <th>Treatment</th>
+
 <th>Tanggal</th>
+
 <th>Jam</th>
+
 <th>Terapis</th>
+
 <th>Status</th>
+
 <th>Aksi</th>
 
 </tr>
+
 
 
 `;
 
 
 
+
 data.forEach((item,index)=>{
+
 
 
 html += `
@@ -176,19 +206,27 @@ html += `
 
 <td>${index+1}</td>
 
+
 <td>${item.booking}</td>
+
 
 <td>${item.nama}</td>
 
-<td>${item.noWa}</td>
+
+<td>${item.wa}</td>
+
 
 <td>${item.treatment}</td>
 
+
 <td>${item.tanggal}</td>
+
 
 <td>${item.jam}</td>
 
+
 <td>${item.terapis}</td>
+
 
 <td>${item.status}</td>
 
@@ -198,27 +236,34 @@ html += `
 
 
 <button onclick="detailReservasi(${index})">
+
 📋 Detail
+
 </button>
 
 
 
 <button onclick="konfirmasi(${index})">
+
 🟢 Konfirmasi
+
 </button>
 
 
 
 <button onclick="selesai(${index})">
+
 ✅ Selesai
+
 </button>
 
 
 
 <button onclick="hapusReservasi(${index})">
-🗑️ Hapus
-</button>
 
+🗑️ Hapus
+
+</button>
 
 
 </td>
@@ -228,6 +273,7 @@ html += `
 
 
 `;
+
 
 
 });
@@ -241,7 +287,11 @@ html += "</table>";
 document.getElementById("dataBooking").innerHTML = html;
 
 
+
 }
+
+
+
 
 
 
@@ -255,8 +305,11 @@ function simpan(){
 
 
 localStorage.setItem(
+
 "reservasi",
+
 JSON.stringify(reservasi)
+
 );
 
 
@@ -264,6 +317,9 @@ location.reload();
 
 
 }
+
+
+
 
 
 
@@ -278,10 +334,12 @@ function konfirmasi(index){
 
 reservasi[index].status="🟢 Dikonfirmasi";
 
+
 simpan();
 
 
 }
+
 
 
 
@@ -290,10 +348,12 @@ function selesai(index){
 
 reservasi[index].status="✅ Selesai";
 
+
 simpan();
 
 
 }
+
 
 
 
@@ -305,6 +365,7 @@ if(confirm("Yakin ingin menghapus reservasi?")){
 
 reservasi.splice(index,1);
 
+
 simpan();
 
 
@@ -312,6 +373,9 @@ simpan();
 
 
 }
+
+
+
 
 
 
@@ -327,30 +391,47 @@ function detailReservasi(index){
 let data = reservasi[index];
 
 
+
 alert(
+
 
 "📋 DETAIL RESERVASI\n\n"+
 
+
 "🔖 Booking : "+data.booking+"\n"+
+
 
 "👤 Nama : "+data.nama+"\n"+
 
-"📱 WhatsApp : "+data.noWa+"\n"+
+
+"📱 WhatsApp : "+data.wa+"\n"+
+
 
 "💆 Treatment : "+data.treatment+"\n"+
 
+
+"💰 Harga : "+data.harga+"\n"+
+
+
 "👩 Terapis : "+data.terapis+"\n"+
+
 
 "📅 Tanggal : "+data.tanggal+"\n"+
 
+
 "🕒 Jam : "+data.jam+"\n"+
 
+
 "📌 Status : "+data.status
+
 
 );
 
 
 }
+
+
+
 
 
 
@@ -364,20 +445,26 @@ function cariReservasi(){
 
 
 let keyword =
+
 document.getElementById("cariBooking")
 .value
 .toLowerCase();
 
 
 
+
 let hasil = reservasi.filter(item =>
+
 
 
 item.booking.toLowerCase().includes(keyword)
 
+
 ||
 
+
 item.nama.toLowerCase().includes(keyword)
+
 
 
 );
@@ -393,6 +480,8 @@ tampilkanData(hasil);
 
 
 
+
+
 // ========================
 // FILTER
 // ========================
@@ -402,7 +491,9 @@ function filterStatus(){
 
 
 let status =
+
 document.getElementById("filterStatus").value;
+
 
 
 
@@ -411,10 +502,12 @@ if(status==""){
 
 tampilkanData(reservasi);
 
+
 return;
 
 
 }
+
 
 
 
@@ -431,15 +524,22 @@ item.status.includes(status)
 tampilkanData(hasil);
 
 
+
 }
 
 
 
 
-// LOAD AWAL
+
+
+
+// ========================
+// LOAD
+// ========================
 
 
 updateDashboard();
+
 
 tampilkanData(reservasi);
 
