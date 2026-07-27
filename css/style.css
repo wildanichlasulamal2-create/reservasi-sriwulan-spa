@@ -795,26 +795,14 @@ transform:scale(1.1);
 
 </style>
 
-.aksi-admin{
-    position:relative;
-}
-
-
 .btn-hapus-kecil{
 
-    position:absolute;
-
-    top:-15px;
-
-    right:0px;
-
-    width:25px;
-
-    height:25px;
+    width:30px;
+    height:30px;
 
     padding:0;
 
-    border-radius:5px;
+    border-radius:50%;
 
     background:#dc3545;
 
@@ -822,11 +810,11 @@ transform:scale(1.1);
 
     border:none;
 
-    font-size:12px;
+    font-size:14px;
 
     cursor:pointer;
 
-    display:flex;
+    display:inline-flex;
 
     align-items:center;
 
@@ -837,8 +825,9 @@ transform:scale(1.1);
 
 .btn-hapus-kecil:hover{
 
+    background:#b02a37;
+
     transform:scale(1.1);
 
 }
-
 
