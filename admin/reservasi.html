@@ -1,95 +1,98 @@
-<script>
+let reservasi = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-let data = JSON.parse(localStorage.getItem("reservasi")) || [];
+let html = `
+<table class="table-admin">
 
-// Jika data lama masih berupa object, ubah menjadi array
-if (!Array.isArray(data)) {
-    data = [data];
-}
+<tr>
+<th>No</th>
+<th>Booking</th>
+<th>Nama</th>
+<th>Treatment</th>
+<th>Tanggal</th>
+<th>Status</th>
+<th>Aksi</th>
+</tr>
+`;
 
-tampilData();
+reservasi.forEach((data,index)=>{
 
-function tampilData() {
+html += `
 
-    if (data.length === 0) {
+<tr>
 
-        document.getElementById("dataBooking").innerHTML = `
-            <p>Belum ada reservasi masuk.</p>
-        `;
-        return;
-    }
+<td>${index+1}</td>
 
-    let html = `
-    <table class="table-admin">
-        <tr>
-            <th>No Booking</th>
-            <th>Nama</th>
-            <th>Treatment</th>
-            <th>Tanggal</th>
-            <th>Jam</th>
-            <th>Status</th>
-            <th>Aksi</th>
-        </tr>
-    `;
+<td>${data.booking}</td>
 
-    data.forEach((item, index) => {
+<td>${data.nama}</td>
 
-        html += `
-        <tr>
+<td>${data.treatment}</td>
 
-            <td>${item.booking}</td>
+<td>${data.tanggal}</td>
 
-            <td>${item.nama}</td>
+<td>${data.status}</td>
 
-            <td>${item.treatment}</td>
+<td>
 
-            <td>${item.tanggal}</td>
+<button onclick="konfirmasi(${index})">
+Konfirmasi
+</button>
 
-            <td>${item.jam}</td>
+<button onclick="selesai(${index})">
+Selesai
+</button>
 
-            <td>${item.status}</td>
+<button onclick="hapus(${index})">
+Hapus
+</button>
 
-            <td>
+</td>
 
-                <button onclick="terima(${index})">
-                ✔
-                </button>
+</tr>
 
-                <button onclick="tolak(${index})">
-                ✖
-                </button>
+`;
 
-            </td>
+});
 
-        </tr>
-        `;
+html += "</table>";
 
-    });
+document.getElementById("dataBooking").innerHTML = html;
 
-    html += "</table>";
+function simpan(){
 
-    document.getElementById("dataBooking").innerHTML = html;
+localStorage.setItem(
+"reservasi",
+JSON.stringify(reservasi)
+);
+
+location.reload();
 
 }
 
-function terima(index){
+function konfirmasi(index){
 
-    data[index].status = "🟢 Diterima";
+reservasi[index].status="🟢 Dikonfirmasi";
 
-    localStorage.setItem("reservasi", JSON.stringify(data));
-
-    tampilData();
+simpan();
 
 }
 
-function tolak(index){
+function selesai(index){
 
-    data[index].status = "🔴 Ditolak";
+reservasi[index].status="✅ Selesai";
 
-    localStorage.setItem("reservasi", JSON.stringify(data));
-
-    tampilData();
+simpan();
 
 }
 
-</script>
+function hapus(index){
+
+if(confirm("Hapus reservasi?")){
+
+reservasi.splice(index,1);
+
+simpan();
+
+}
+
+}
