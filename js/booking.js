@@ -180,8 +180,7 @@ form.addEventListener("submit", async function(e){
 
 
         window.location.href =
-
-        "/reservasi-sriwulan-spa/cek-reservasi.html";
+ "/reservasi-sriwulan-spa/cek-reservasi.html?booking=" + nomorBooking;
 
 
 
