@@ -1,41 +1,16 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Cek Reservasi | SIRES Sriwulan Spa</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
-
-<section class="booking">
-
-<div class="booking-box">
-
-<h1>🌸 Cek Status Reservasi</h1>
-
-<p>Informasi reservasi pelanggan</p>
-
-<div id="hasil"></div>
-
-</div>
-
-</section>
-
 <script>
 
-let data = JSON.parse(localStorage.getItem("reservasi"));
+let data = JSON.parse(localStorage.getItem("reservasi")) || [];
 
-if(data){
+// Jika data lama masih object, ubah menjadi array
+if (!Array.isArray(data)) {
+    data = [data];
+}
+
+// Ambil reservasi terakhir
+let reservasi = data[data.length - 1];
+
+if(reservasi){
 
 document.getElementById("hasil").innerHTML = `
 
@@ -45,42 +20,42 @@ document.getElementById("hasil").innerHTML = `
 
 <div class="info">
 <span>🔖 Nomor Booking</span>
-<h3>${data.booking}</h3>
+<h3>${reservasi.booking}</h3>
 </div>
 
 <div class="info">
 <span>👤 Nama Pelanggan</span>
-<p>${data.nama}</p>
+<p>${reservasi.nama}</p>
 </div>
 
 <div class="info">
 <span>💆 Treatment</span>
-<p>${data.treatment}</p>
+<p>${reservasi.treatment}</p>
 </div>
 
 <div class="info">
 <span>💰 Harga</span>
-<p>${data.harga}</p>
+<p>${reservasi.harga}</p>
 </div>
 
 <div class="info">
 <span>👩 Terapis</span>
-<p>${data.terapis}</p>
+<p>${reservasi.terapis}</p>
 </div>
 
 <div class="info">
 <span>📅 Tanggal Reservasi</span>
-<p>${data.tanggal}</p>
+<p>${reservasi.tanggal}</p>
 </div>
 
 <div class="info">
 <span>🕒 Jam Reservasi</span>
-<p>${data.jam}</p>
+<p>${reservasi.jam}</p>
 </div>
 
 <div class="info">
 <span>📌 Status</span>
-<p class="status">🟡 ${data.status}</p>
+<p class="status">${reservasi.status}</p>
 </div>
 
 <a href="index.html" class="btn-kembali">
@@ -114,7 +89,3 @@ Silakan lakukan reservasi terlebih dahulu.
 }
 
 </script>
-
-</body>
-
-</html>
