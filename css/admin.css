@@ -274,3 +274,79 @@ body{
     height:300px !important;
 
 }
+
+/*==========================
+BOTTOM GRID
+===========================*/
+
+.bottom-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
+margin-bottom:30px;
+
+}
+
+.schedule-item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px 0;
+
+border-bottom:1px solid #eee;
+
+font-size:15px;
+
+}
+
+.notif-item{
+
+padding:12px 0;
+
+border-bottom:1px solid #eee;
+
+font-size:15px;
+
+}
+
+.notif-item:last-child,
+
+.schedule-item:last-child{
+
+border-bottom:none;
+
+}
+
+/*==========================
+BUSINESS INSIGHT
+===========================*/
+
+.insight{
+
+margin-bottom:30px;
+
+}
+
+.insight ul{
+
+margin-top:15px;
+
+padding-left:20px;
+
+}
+
+.insight li{
+
+margin-bottom:12px;
+
+line-height:1.7;
+
+color:#555;
+
+}
