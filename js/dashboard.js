@@ -109,3 +109,83 @@ display:false
 }
 
 });
+
+// ===================================
+// DASHBOARD FIREBASE
+// ===================================
+
+async function loadDashboard(){
+
+    const snapshot = await getDocs(collection(db,"reservasi"));
+
+    const reservasi = snapshot.docs.map(doc=>doc.data());
+
+
+
+    // ==========================
+    // TOTAL RESERVASI
+    // ==========================
+
+    document.getElementById("totalReservasi").innerHTML =
+    reservasi.length;
+
+
+
+    // ==========================
+    // TOTAL PELANGGAN
+    // ==========================
+
+    const pelanggan = new Set();
+
+    reservasi.forEach(item=>{
+
+        pelanggan.add(item.wa);
+
+    });
+
+    document.getElementById("totalPelanggan").innerHTML =
+    pelanggan.size;
+
+
+
+    // ==========================
+    // TOTAL PENDAPATAN
+    // ==========================
+
+    let total = 0;
+
+    reservasi.forEach(item=>{
+
+        let harga = item.harga
+        .replace("Rp","")
+        .replace(/\./g,"")
+        .replace(/,/g,"")
+        .trim();
+
+        total += Number(harga);
+
+    });
+
+    document.getElementById("totalPendapatan").innerHTML =
+    "Rp " + total.toLocaleString("id-ID");
+
+
+
+    // ==========================
+    // KEHADIRAN TERAPIS
+    // ==========================
+
+    const daftarTerapis = new Set();
+
+    reservasi.forEach(item=>{
+
+        daftarTerapis.add(item.terapis);
+
+    });
+
+    document.getElementById("kehadiran").innerHTML =
+    daftarTerapis.size + " / " + daftarTerapis.size;
+
+}
+
+loadDashboard();
