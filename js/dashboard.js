@@ -394,7 +394,11 @@ const jadwalHariIni = document.getElementById("jadwalHariIni");
 
 jadwalHariIni.innerHTML = "";
 
-const hariIni = new Date().toISOString().split("T")[0];
+const sekarang = new Date();
+
+const hariIni = sekarang.getFullYear() + "-" +
+String(sekarang.getMonth()+1).padStart(2,"0") + "-" +
+String(sekarang.getDate()).padStart(2,"0");
 
 const jadwal = reservasi
 .filter(item => item.tanggal === hariIni)
@@ -429,6 +433,53 @@ if(jadwal.length===0){
         `;
 
     });
+
+    // ==========================
+// NOTIFIKASI TERBARU
+// ==========================
+
+const notifikasi = document.getElementById("notifikasi");
+
+notifikasi.innerHTML = "";
+
+const terbaru = [...reservasi]
+.sort((a,b)=>{
+
+    return b.waktu?.seconds - a.waktu?.seconds;
+
+})
+.slice(0,5);
+
+
+if(terbaru.length === 0){
+
+    notifikasi.innerHTML = `
+        <p>Belum ada aktivitas.</p>
+    `;
+
+}else{
+
+    terbaru.forEach(item=>{
+
+        notifikasi.innerHTML += `
+
+        <div class="notif-item">
+
+            🔔 Reservasi baru
+            <br>
+
+            <b>${item.nama}</b>
+
+            <br>
+
+            <small>${item.treatment} - ${item.status}</small>
+
+        </div>
+
+        `;
+
+    });
+
 
 
 }
