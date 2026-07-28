@@ -339,6 +339,53 @@ topTerapis.forEach((item,index)=>{
 
 });
 
+    // ==========================
+// TREATMENT TERLARIS
+// ==========================
+
+const hitungTreatment = {};
+
+reservasi.forEach(item=>{
+
+    const nama = item.treatment || "Belum Dipilih";
+
+    hitungTreatment[nama] = (hitungTreatment[nama] || 0) + 1;
+
+});
+
+const topTreatment = Object.entries(hitungTreatment)
+.sort((a,b)=>b[1]-a[1])
+.slice(0,3);
+
+const treatmentList = document.getElementById("treatmentList");
+
+treatmentList.innerHTML = "";
+
+topTreatment.forEach((item,index)=>{
+
+    const icon =
+        index===0 ? "🥇" :
+        index===1 ? "🥈" :
+        index===2 ? "🥉" : "⭐";
+
+    treatmentList.innerHTML += `
+
+        <div class="treatment-item">
+
+            <div>
+
+                <h4>${icon} ${item[0]}</h4>
+
+                <small>${item[1]} Reservasi</small>
+
+            </div>
+
+        </div>
+
+    `;
+
+});
+
 }
 
 loadDashboard();
