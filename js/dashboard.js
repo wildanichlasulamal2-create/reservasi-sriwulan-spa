@@ -7,3 +7,11 @@ hari.toLocaleDateString("id-ID",{
     month:"long",
     year:"numeric"
 });
+
+document.getElementById("totalReservasi").innerHTML = 24;
+
+document.getElementById("totalPendapatan").innerHTML = "Rp2.450.000";
+
+document.getElementById("totalPelanggan").innerHTML = 126;
+
+document.getElementById("kehadiran").innerHTML = "8 / 10";
