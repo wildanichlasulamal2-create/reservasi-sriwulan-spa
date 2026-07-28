@@ -24,7 +24,7 @@ hari.toLocaleDateString("id-ID",{
 // GRAFIK RESERVASI
 // ============================
 
-new Chart(document.getElementById("reservasiChart"),{
+const reservasiChart = new Chart(document.getElementById("reservasiChart"),{
 
 type:"line",
 
@@ -72,7 +72,7 @@ display:false
 // GRAFIK PENDAPATAN
 // ============================
 
-new Chart(document.getElementById("pendapatanChart"),{
+const pendapatanChart = new Chart(document.getElementById("pendapatanChart"),{
 
 type:"bar",
 
@@ -185,6 +185,114 @@ async function loadDashboard(){
 
     document.getElementById("kehadiran").innerHTML =
     daftarTerapis.size + " / " + daftarTerapis.size;
+
+    // ==========================
+// DATA GRAFIK RESERVASI
+// ==========================
+
+const jumlahHari = {
+    Sen:0,
+    Sel:0,
+    Rab:0,
+    Kam:0,
+    Jum:0,
+    Sab:0,
+    Min:0
+};
+
+reservasi.forEach(item=>{
+
+    const hari = new Date(item.tanggal);
+
+    const namaHari = hari.toLocaleDateString("id-ID",{
+        weekday:"short"
+    });
+
+    if(jumlahHari[namaHari] !== undefined){
+
+        jumlahHari[namaHari]++;
+
+    }
+
+});
+
+reservasiChart.data.datasets[0].data = [
+
+jumlahHari.Sen,
+
+jumlahHari.Sel,
+
+jumlahHari.Rab,
+
+jumlahHari.Kam,
+
+jumlahHari.Jum,
+
+jumlahHari.Sab,
+
+jumlahHari.Min
+
+];
+
+reservasiChart.update();
+
+    // ==========================
+// DATA GRAFIK PENDAPATAN
+// ==========================
+
+const pendapatanHari = {
+    Sen:0,
+    Sel:0,
+    Rab:0,
+    Kam:0,
+    Jum:0,
+    Sab:0,
+    Min:0
+};
+
+reservasi.forEach(item=>{
+
+    const hari = new Date(item.tanggal);
+
+    const namaHari = hari.toLocaleDateString("id-ID",{
+        weekday:"short"
+    });
+
+    let harga = Number(
+        item.harga
+        .replace("Rp","")
+        .replace(/\./g,"")
+        .replace(/,/g,"")
+        .trim()
+    );
+
+    if(pendapatanHari[namaHari] !== undefined){
+
+        pendapatanHari[namaHari]+=harga;
+
+    }
+
+});
+
+pendapatanChart.data.datasets[0].data=[
+
+pendapatanHari.Sen,
+
+pendapatanHari.Sel,
+
+pendapatanHari.Rab,
+
+pendapatanHari.Kam,
+
+pendapatanHari.Jum,
+
+pendapatanHari.Sab,
+
+pendapatanHari.Min
+
+];
+
+pendapatanChart.update();
 
 }
 
