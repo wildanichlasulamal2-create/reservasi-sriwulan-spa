@@ -294,29 +294,6 @@ pendapatanHari.Min
 
 pendapatanChart.update();
 
-    // ==========================
-// TOP TERAPIS
-// ==========================
-
-const hitungTerapis = {};
-
-reservasi.forEach(item => {
-
-    const nama = item.terapis;
-
-    if (!hitungTerapis[nama]) {
-
-        hitungTerapis[nama] = 0;
-
-    }
-
-    hitungTerapis[nama]++;
-
-});
-
-const topTerapis = Object.entries(hitungTerapis)
-.sort((a,b)=>b[1]-a[1])
-.slice(0,3);
 
     // ==========================
 // TOP TERAPIS
