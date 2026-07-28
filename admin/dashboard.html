@@ -2,189 +2,147 @@
 <html lang="id">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin | SIRES Sriwulan Spa</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/admin.css">
 
-<title>Dashboard Admin | SIRES Sriwulan Spa</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-<link rel="stylesheet" href="../css/style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
-
 
 <body>
 
+<div class="container">
 
-<div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
+        <div class="logo">
+            <h2>🌸 SIRES</h2>
+            <span>Sriwulan Spa</span>
+        </div>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
+        <ul class="menu">
 
-<h2>🌸 SIRES</h2>
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
 
+            <li>
+                <a href="reservasi.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Reservasi
+                </a>
+            </li>
 
-<ul>
+            <li>
+                <a href="pelanggan.html">
+                    <i class="fa-solid fa-users"></i>
+                    Pelanggan
+                </a>
+            </li>
 
+            <li>
+                <a href="terapis.html">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Terapis
+                </a>
+            </li>
 
-<li class="active">
-<a href="dashboard.html">
-🏠 Dashboard
-</a>
-</li>
+            <li>
+                <a href="treatment.html">
+                    <i class="fa-solid fa-spa"></i>
+                    Treatment
+                </a>
+            </li>
 
+            <li>
+                <a href="laporan.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Laporan
+                </a>
+            </li>
 
-<li>
-<a href="reservasi.html">
-📋 Reservasi
-</a>
-</li>
+            <li>
+                <a href="marketing.html">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    Marketing
+                </a>
+            </li>
 
+            <li>
+                <a href="pengaturan.html">
+                    <i class="fa-solid fa-gear"></i>
+                    Pengaturan
+                </a>
+            </li>
 
-<li>
-<a href="pelanggan.html">
-👥 Pelanggan
-</a>
-</li>
+        </ul>
 
+        <div class="logout">
 
-<li>
-<a href="laporan.html">
-📊 Laporan
-</a>
-</li>
+            <a href="login.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
 
+        </div>
 
-<li>
-<a href="pengaturan.html">
-⚙️ Pengaturan
-</a>
-</li>
+    </aside>
 
+    <!-- MAIN -->
+    <main class="main">
 
-<li>
-<a href="login.html">
-🚪 Logout
-</a>
-</li>
+        <!-- HEADER -->
+        <header class="header">
 
+            <div>
 
-</ul>
+                <h2>Halo, Wildan 👋</h2>
 
+                <p id="tanggal"></p>
 
-</aside>
+            </div>
 
+            <div class="header-right">
 
+                <button class="notif">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
 
+                <div class="profile">
 
-<!-- CONTENT -->
+                    <img src="../assets/avatars/admin.png" alt="Admin">
 
-<main class="content">
+                    <span>Admin</span>
 
+                </div>
 
-<h1>Dashboard Admin</h1>
+            </div>
 
-<p>
-Selamat datang di SIRES Sriwulan Spa
-</p>
+        </header>
 
+        <!-- ISI DASHBOARD -->
+        <div class="content">
 
+        </div>
 
-<div class="dashboard-card">
-
-
-
-<div class="card">
-
-<h3>Total Reservasi</h3>
-
-<h2 id="totalReservasi">
-0
-</h2>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Menunggu</h3>
-
-<h2 id="menunggu">
-0
-</h2>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h3>Dikonfirmasi</h3>
-
-<h2 id="dikonfirmasi">
-0
-</h2>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h3>Selesai</h3>
-
-<h2 id="selesai">
-0
-</h2>
+    </main>
 
 </div>
 
-
-
-</div>
-
-
-
-
-
-<div class="card-table">
-
-
-<h2>
-Reservasi Terbaru
-</h2>
-
-
-
-<div id="reservasiTerbaru">
-
-Memuat data...
-
-</div>
-
-
-
-</div>
-
-
-
-</main>
-
-
-
-</div>
-
-
-
-<script type="module" src="../js/dashboard.js"></script>
-
+<script src="../js/dashboard.js"></script>
 
 </body>
-
 </html>
