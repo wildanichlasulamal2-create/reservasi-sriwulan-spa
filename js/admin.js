@@ -2,11 +2,15 @@ import { db } from "./firebase.js";
 
 import {
     collection,
-    getDocs
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-// ambil data reservasi
+
+// LOAD DATA RESERVASI
 
 async function loadReservasi(){
 
@@ -14,7 +18,7 @@ async function loadReservasi(){
 
     try {
 
-        const querySnapshot = await getDocs(
+        const snapshot = await getDocs(
             collection(db,"reservasi")
         );
 
@@ -28,10 +32,12 @@ async function loadReservasi(){
 
 
 
-        querySnapshot.forEach((doc)=>{
+        snapshot.forEach((item)=>{
 
 
-            const data = doc.data();
+            const data = item.data();
+
+            const id = item.id;
 
 
             total++;
@@ -55,27 +61,44 @@ async function loadReservasi(){
 
             <div class="stat-card">
 
-            <h3>${data.nama}</h3>
+                <h3>${data.nama}</h3>
 
-            <p>
-            Booking : ${data.kodeBooking || "-"}
-            </p>
+                <p>
+                Booking : ${data.kodeBooking || "-"}
+                </p>
 
-            <p>
-            Treatment : ${data.treatment}
-            </p>
+                <p>
+                Treatment : ${data.treatment}
+                </p>
 
-            <p>
-            Tanggal : ${data.tanggal}
-            </p>
+                <p>
+                Tanggal : ${data.tanggal}
+                </p>
 
-            <p>
-            Jam : ${data.jam}
-            </p>
+                <p>
+                Jam : ${data.jam}
+                </p>
 
-            <p>
-            Status : ${data.status}
-            </p>
+                <p>
+                Status :
+                <b>${data.status}</b>
+                </p>
+
+
+                <button onclick="konfirmasi('${id}')">
+                🟢 Konfirmasi
+                </button>
+
+
+                <button onclick="selesaiReservasi('${id}')">
+                ✅ Selesai
+                </button>
+
+
+                <button onclick="hapusReservasi('${id}')">
+                🗑️ Hapus
+                </button>
+
 
             </div>
 
@@ -87,7 +110,6 @@ async function loadReservasi(){
 
 
         area.innerHTML = html || "Belum ada reservasi";
-
 
 
         document.getElementById("totalReservasi").innerHTML = total;
@@ -109,6 +131,74 @@ async function loadReservasi(){
     }
 
 }
+
+
+
+
+
+// UPDATE STATUS
+
+async function ubahStatus(id,status){
+
+    const ref = doc(db,"reservasi",id);
+
+
+    await updateDoc(ref,{
+        status:status
+    });
+
+
+    loadReservasi();
+
+}
+
+
+
+
+
+// KONFIRMASI
+
+window.konfirmasi = function(id){
+
+    ubahStatus(id,"Dikonfirmasi");
+
+}
+
+
+
+
+
+// SELESAI
+
+window.selesaiReservasi = function(id){
+
+    ubahStatus(id,"Selesai");
+
+}
+
+
+
+
+
+// HAPUS
+
+window.hapusReservasi = async function(id){
+
+
+    if(confirm("Hapus reservasi ini?")){
+
+
+        await deleteDoc(
+            doc(db,"reservasi",id)
+        );
+
+
+        loadReservasi();
+
+    }
+
+}
+
 
 
 
