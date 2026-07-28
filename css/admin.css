@@ -388,3 +388,33 @@ color:#555;
     font-size:20px;
 
 }
+
+/*==========================
+TREATMENT TERLARIS
+===========================*/
+
+.treatment-item{
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.treatment-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.treatment-item h4{
+
+    margin:0;
+
+}
+
+.treatment-item small{
+
+    color:#777;
+
+}
