@@ -1,3 +1,13 @@
+import { db } from "./firebase.js";
+
+import {
+
+collection,
+
+getDocs
+
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 const hari = new Date();
 
 document.getElementById("tanggal").innerHTML =
@@ -8,13 +18,7 @@ hari.toLocaleDateString("id-ID",{
     year:"numeric"
 });
 
-document.getElementById("totalReservasi").innerHTML = 24;
 
-document.getElementById("totalPendapatan").innerHTML = "Rp2.450.000";
-
-document.getElementById("totalPelanggan").innerHTML = 126;
-
-document.getElementById("kehadiran").innerHTML = "8 / 10";
 
 // ============================
 // GRAFIK RESERVASI
