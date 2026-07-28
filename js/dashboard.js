@@ -386,6 +386,51 @@ topTreatment.forEach((item,index)=>{
 
 });
 
+    // ==========================
+// JADWAL HARI INI
+// ==========================
+
+const jadwalHariIni = document.getElementById("jadwalHariIni");
+
+jadwalHariIni.innerHTML = "";
+
+const hariIni = new Date().toISOString().split("T")[0];
+
+const jadwal = reservasi
+.filter(item => item.tanggal === hariIni)
+.sort((a,b)=>a.jam.localeCompare(b.jam));
+
+if(jadwal.length===0){
+
+    jadwalHariIni.innerHTML = `
+        <p>Tidak ada reservasi hari ini.</p>
+    `;
+
+}else{
+
+    jadwal.forEach(item=>{
+
+        jadwalHariIni.innerHTML += `
+
+            <div class="schedule-item">
+
+                <strong>${item.jam}</strong>
+
+                <div>
+
+                    <b>${item.nama}</b><br>
+
+                    <small>${item.treatment}</small>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
 }
 
 loadDashboard();
