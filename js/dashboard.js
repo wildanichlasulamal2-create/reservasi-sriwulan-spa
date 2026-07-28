@@ -576,7 +576,10 @@ insight.innerHTML += `
 }
 
 
-// jalankan dashboard
+// ==========================
+// JALANKAN DASHBOARD
+// ==========================
+
 loadDashboard();
     
-loadDashboard();
+
