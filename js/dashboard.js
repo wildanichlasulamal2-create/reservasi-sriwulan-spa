@@ -484,7 +484,6 @@ if(terbaru.length === 0){
 
     }
 
-    }
 
 // ==========================
 // BUSINESS INSIGHT
@@ -572,5 +571,12 @@ insight.innerHTML += `
 `;
 
 }
+
+
+}
+
+
+// jalankan dashboard
+loadDashboard();
     
 loadDashboard();
