@@ -480,8 +480,91 @@ if(terbaru.length === 0){
 
     });
 
+// ==========================
+// BUSINESS INSIGHT
+// ==========================
 
+const insight = document.getElementById("businessInsight");
+
+insight.innerHTML = "";
+
+
+// TOTAL RESERVASI
+
+insight.innerHTML += `
+
+<li>
+📈 Total reservasi saat ini:
+<b>${reservasi.length}</b> transaksi
+</li>
+
+`;
+
+
+// TOTAL PENDAPATAN
+
+insight.innerHTML += `
+
+<li>
+💰 Pendapatan:
+<b>Rp ${total.toLocaleString("id-ID")}</b>
+</li>
+
+`;
+
+
+// TERAPIS TERBAIK
+
+if(topTerapis.length > 0){
+
+insight.innerHTML += `
+
+<li>
+⭐ Terapis terbaik:
+<b>${topTerapis[0][0]}</b>
+(${topTerapis[0][1]} reservasi)
+</li>
+
+`;
 
 }
 
+
+// TREATMENT FAVORIT
+
+if(topTreatment.length > 0){
+
+insight.innerHTML += `
+
+<li>
+💆 Treatment favorit:
+<b>${topTreatment[0][0]}</b>
+(${topTreatment[0][1]} pemesanan)
+</li>
+
+`;
+
+}
+
+
+// HARI TERPADAT
+
+const hariRamai = Object.entries(jumlahHari)
+.sort((a,b)=>b[1]-a[1])[0];
+
+
+if(hariRamai){
+
+insight.innerHTML += `
+
+<li>
+📅 Hari paling ramai:
+<b>${hariRamai[0]}</b>
+(${hariRamai[1]} reservasi)
+</li>
+
+`;
+
+}
+    
 loadDashboard();
