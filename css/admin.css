@@ -418,3 +418,43 @@ TREATMENT TERLARIS
     color:#777;
 
 }
+
+/*==========================
+JADWAL HARI INI
+===========================*/
+
+.schedule-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.schedule-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.schedule-item strong{
+
+    min-width:60px;
+
+    color:#d63384;
+
+}
+
+.schedule-item small{
+
+    color:#777;
+
+}
