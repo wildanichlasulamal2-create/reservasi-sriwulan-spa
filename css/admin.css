@@ -350,3 +350,41 @@ line-height:1.7;
 color:#555;
 
 }
+
+.terapis-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.terapis-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.terapis-item h4{
+
+    margin:0;
+
+}
+
+.terapis-item small{
+
+    color:#777;
+
+}
+
+.terapis-item span{
+
+    font-size:20px;
+
+}
