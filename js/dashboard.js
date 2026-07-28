@@ -318,6 +318,50 @@ const topTerapis = Object.entries(hitungTerapis)
 .sort((a,b)=>b[1]-a[1])
 .slice(0,3);
 
+    // ==========================
+// TOP TERAPIS
+// ==========================
+
+const hitungTerapis = {};
+
+reservasi.forEach(item => {
+
+    const nama = item.terapis || "Belum Dipilih";
+
+    hitungTerapis[nama] = (hitungTerapis[nama] || 0) + 1;
+
+});
+
+const topTerapis = Object.entries(hitungTerapis)
+.sort((a,b)=>b[1]-a[1])
+.slice(0,3);
+
+    const topTerapisList = document.getElementById("topTerapisList");
+
+topTerapisList.innerHTML = "";
+
+topTerapis.forEach((item,index)=>{
+
+    topTerapisList.innerHTML += `
+
+        <div class="terapis-item">
+
+            <div>
+
+                <h4>${index+1}. ${item[0]}</h4>
+
+                <small>${item[1]} Reservasi</small>
+
+            </div>
+
+            <span>🏆</span>
+
+        </div>
+
+    `;
+
+});
+
 }
 
 loadDashboard();
